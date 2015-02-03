@@ -20,4 +20,12 @@
 //const int RANGE_FINDER_PORT = 1;
 //const int RANGE_FINDER_MODULE = 1;
 
+const int LEFT_MOTOR_MASTER = 1;
+const int LEFT_MOTOR_FOLLOWER = 2;
+const int RIGHT_MOTOR_MASTER = 3;
+const int RIGHT_MOTOR_FOLLOWER = 4;
+
+const int RIGHT_JOYSTICK    = 2;
+const int LEFT_JOYSTICK     = 3;
+
 #endif
