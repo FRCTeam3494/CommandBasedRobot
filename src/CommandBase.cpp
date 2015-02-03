@@ -1,6 +1,7 @@
 #include "CommandBase.h"
 #include "Subsystems/ExampleSubsystem.h"
 #include "Commands/Scheduler.h"
+#include "Subsystems/DriveTrain.h"
 
 // Initialize a single static instance of all of your subsystems to NULL
 
@@ -24,5 +25,4 @@ void CommandBase::init()
 
 
 	oi = new OI();
-	//drivetrain = new DriveTrain();
 }

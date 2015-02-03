@@ -1,6 +1,6 @@
 #include "OI.h"
 #include "Commands/Print.h"
-
+#include "Commands/Drive.h"
 
 OI::OI()
 {
@@ -18,4 +18,5 @@ OI::OI()
 		buttonSelect = new JoystickButton(controller, 7);
 
 		buttonA->WhenPressed(new Print());
+		buttonX->WhenPressed(new Drive());
 }

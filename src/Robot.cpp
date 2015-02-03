@@ -1,63 +1,52 @@
 #include "WPILib.h"
 #include "Commands/Command.h"
+#include "Commandbase.h"
 #include "Commands/ExampleCommand.h"
 #include "Subsystems/DriveTrain.h"
 
 #include "CommandBase.h"
+#include "Robot.h"
 
-class Robot: public IterativeRobot
-{
-private:
-	Command *autonomousCommand;
-	LiveWindow *lw;
+void Robot::RobotInit() {
+	CommandBase::init();
+	//autonomousCommand = new ExampleCommand();
+	lw = LiveWindow::GetInstance();
+	drivetrain = new DriveTrain();
+}
 
-	void RobotInit()
-	{
-		CommandBase::init();
-		autonomousCommand = new ExampleCommand();
-		lw = LiveWindow::GetInstance();
+void Robot::DisabledPeriodic() {
+	Scheduler::GetInstance()->Run();
+}
 
+void Robot::AutonomousInit() {
+	if (autonomousCommand != NULL){
+		autonomousCommand->Start();
 	}
-	
-	void DisabledPeriodic()
-	{
-		Scheduler::GetInstance()->Run();
-	}
+}
 
-	void AutonomousInit()
-	{
-		if (autonomousCommand != NULL)
-			autonomousCommand->Start();
-	}
+void Robot::AutonomousPeriodic() {
+	Scheduler::GetInstance()->Run();
+	drivetrain->TankDrive(1,-1);
+}
 
-	void AutonomousPeriodic()
-	{
-		Scheduler::GetInstance()->Run();
-	}
+void Robot::TeleopInit() {
+	// This makes sure that the autonomous stops running when
+	// teleop starts running. If you want the autonomous to
+	// continue until interrupted by another command, remove
+	// this line or comment it out.
+	if (autonomousCommand != NULL)
+		autonomousCommand->Cancel();
+}
 
-	void TeleopInit()
-	{
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to 
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
-		if (autonomousCommand != NULL)
-			autonomousCommand->Cancel();
-	}
+void Robot::TeleopPeriodic() {
+	Scheduler::GetInstance()->Run();
 
-	void TeleopPeriodic()
-	{
+}
 
-		Scheduler::GetInstance()->Run();
+void Robot::TestPeriodic() {
 
-	}
-
-	void TestPeriodic()
-	{
-
-		lw->Run();
-	}
-};
+	lw->Run();
+}
 
 START_ROBOT_CLASS(Robot);
 

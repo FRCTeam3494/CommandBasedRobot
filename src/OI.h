@@ -22,8 +22,6 @@ public:
 	JoystickButton* buttonStart;
 	JoystickButton* buttonSelect;
 
-
-
 };
 
 #endif
