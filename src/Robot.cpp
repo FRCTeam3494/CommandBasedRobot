@@ -40,7 +40,7 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
-
+	drivetrain->TankDrive(1,-1);
 }
 
 void Robot::TestPeriodic() {
