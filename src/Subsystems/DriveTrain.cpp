@@ -1,5 +1,65 @@
 #include "DriveTrain.h"
 #include "../RobotMap.h"
+#include "../Commands/Drive.h"
+
+DriveTrain::DriveTrain() :
+		Subsystem("DriveTrain")
+{
+	talonLeftMaster = new CANTalon(LEFT_MOTOR_MASTER);
+	talonLeftFollower = new CANTalon(LEFT_MOTOR_FOLLOWER);
+	talonRightMaster = new CANTalon(RIGHT_MOTOR_MASTER);
+	talonRightFollower = new CANTalon(RIGHT_MOTOR_FOLLOWER);
+	
+	// Talon 2 follow 1
+	talonLeftFollower->SetControlMode(CANSpeedController::kFollower);
+	talonLeftFollower->Set(LEFT_MOTOR_MASTER);
+
+	//Talon 4 follow 3
+	talonRightFollower->SetControlMode(CANSpeedController::kFollower);
+	talonRightFollower->Set(RIGHT_MOTOR_MASTER);
+
+	talonLeftMaster->EnableControl();
+	talonRightMaster->EnableControl();
+
+	talonLeftMaster->SetSafetyEnabled(true);
+	talonLeftMaster->SetExpiration(0.100);
+	talonLeftMaster->Set(0);
+
+	talonRightMaster->SetSafetyEnabled(true);
+	talonRightMaster->SetExpiration(0.100);
+	talonRightMaster->Set(0);
+}
+
+void DriveTrain::InitDefaultCommand()
+{
+	// Set the default command for a subsystem here.
+	SetDefaultCommand(new Drive());
+}
+
+// Put methods for controlling this subsystem
+// here. Call these from Commands.
+void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
+		
+	//Deadband for left!!!!!!!!!!!!!!!!!
+	if (abs(leftAxis) >= 0.14) {
+
+		talonRightMaster->Set(leftAxis);
+	} else {
+		talonRightMaster->Set(0.0f);
+	}
+
+	//deadband for Right!!!!!!!!!!!!!!!!!!!
+	if (abs(rightAxis) >= 0.14f) {
+
+		talonLeftMaster->Set(rightAxis);
+	} else {
+		talonLeftMaster->Set(0.0f);
+	}
+}
+
+
+/*#include "DriveTrain.h"
+#include "../RobotMap.h"
 
 DriveTrain::DriveTrain() :
 	Subsystem("DriveTrain") {
@@ -60,3 +120,4 @@ void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
+*/
