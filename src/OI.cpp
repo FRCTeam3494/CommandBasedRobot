@@ -1,4 +1,22 @@
 #include "OI.h"
+#include "RobotMap.h"
+
+OI::OI()
+{
+	// Process operator interface input here.
+	lstick = new Joystick(LEFT_JOYSTICK);
+	rstick = new Joystick(RIGHT_JOYSTICK);
+}
+
+float OI::GetLeftJoystick() {
+	return lstick->GetY(); // TODO: need to double check
+}
+
+float OI::GetRightJoystick() {
+	return rstick->GetY();
+}
+
+/*#include "OI.h"
 #include "Commands/Print.h"
 #include "Commands/Drive.h"
 
@@ -20,3 +38,4 @@ OI::OI()
 		buttonA->WhenPressed(new Print());
 		buttonX->WhenPressed(new Drive());
 }
+*/
