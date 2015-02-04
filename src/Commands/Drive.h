@@ -3,6 +3,7 @@
 
 #include "../CommandBase.h"
 #include "WPILib.h"
+#include "Subsystems/DriveTrain.h"
 
 class Drive: public CommandBase
 {
@@ -14,6 +15,8 @@ public:
 	void End();
 	void Interrupted();
 
+private:
+	//DriveTrain* driveTrain;
 };
 
 #endif

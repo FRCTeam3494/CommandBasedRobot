@@ -21,7 +21,7 @@ public:
 	// Create a single static instance of all of your subsystems
 
 	static OI *oi;
-	static DriveTrain* drivetrain;
+	static DriveTrain* driveTrain;
 };
 
 #endif

@@ -3,21 +3,20 @@
 Drive::Drive()
 {
 	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(chassis);
-	Requires(driveTrain);
+	// eg. Requires(chassis)
+	Requires(CommandBase::driveTrain);
 }
 
 // Called just before this Command runs the first time
 void Drive::Initialize()
 {
-
 }
 
 // Called repeatedly when this Command is scheduled to run
 void Drive::Execute()
 {
 	//driveTrain->TankDrive(oi->GetLeftJoystick(), oi->GetRightJoystick()); // TODO fix joystick
-	driveTrain->TankDrive(1, -1);
+	CommandBase::driveTrain->TankDrive(1, -1);
 }
 
 // Make this return true when this Command no longer needs to run execute()
