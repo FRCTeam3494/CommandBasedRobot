@@ -8,11 +8,11 @@ OI::OI()
 }
 
 float OI::GetLeftJoystick() {
-	controller->GetRawAxis(1);
+	return controller->GetRawAxis(1);
 }
 
 float OI::GetRightJoystick() {
-	controller->GetRawAxis(2);
+	return controller->GetRawAxis(2);
 }
 
 /*#include "OI.h"
