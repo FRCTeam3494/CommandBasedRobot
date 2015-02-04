@@ -15,8 +15,8 @@ void Drive::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void Drive::Execute()
 {
-	//driveTrain->TankDrive(oi->GetLeftJoystick(), oi->GetRightJoystick()); // TODO fix joystick
-	CommandBase::driveTrain->TankDrive(1, -1);
+	CommandBase::driveTrain->TankDrive(oi->GetLeftJoystick(), oi->GetRightJoystick()); // TODO fix joystick
+	//CommandBase::driveTrain->TankDrive(1, -1);
 }
 
 // Make this return true when this Command no longer needs to run execute()

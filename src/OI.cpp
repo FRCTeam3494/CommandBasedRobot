@@ -4,16 +4,15 @@
 OI::OI()
 {
 	// Process operator interface input here.
-	lstick = new Joystick(LEFT_JOYSTICK);
-	rstick = new Joystick(RIGHT_JOYSTICK);
+	controller = new Joystick(1);
 }
 
 float OI::GetLeftJoystick() {
-	return lstick->GetY(); // TODO: need to double check
+	controller->GetRawAxis(1);
 }
 
 float OI::GetRightJoystick() {
-	return rstick->GetY();
+	controller->GetRawAxis(2);
 }
 
 /*#include "OI.h"

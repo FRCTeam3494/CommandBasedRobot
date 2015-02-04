@@ -6,8 +6,7 @@
 class OI
 {
 private:
-	Joystick* lstick;
-	Joystick* rstick;
+	Joystick* controller;
 public:
 	OI();
 	float GetLeftJoystick();
