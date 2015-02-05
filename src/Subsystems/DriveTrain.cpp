@@ -28,6 +28,7 @@ DriveTrain::DriveTrain() :
 	talonRightMaster->SetSafetyEnabled(true);
 	talonRightMaster->SetExpiration(0.100);
 	talonRightMaster->Set(0);
+	gyro = new Gyro(0);
 }
 
 void DriveTrain::InitDefaultCommand()
@@ -56,8 +57,15 @@ void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 		talonLeftMaster->Set(0.0f);
 	}
 	**/
+
+	float angle = gyro->GetAngle();
+	talonRightMaster->Set(-angle * 0.03);
+	talonLeftMaster->Set(-angle * 0.03);
+
+	/*
 	talonRightMaster->Set(-rightAxis);
 	talonLeftMaster->Set(leftAxis);
+	*/
 
 }
 

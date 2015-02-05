@@ -18,6 +18,8 @@ public:
 	DriveTrain();
 	void InitDefaultCommand();
 	void TankDrive(float leftAxis, float rightAxis);
+
+	Gyro* gyro;
 };
 
 #endif
