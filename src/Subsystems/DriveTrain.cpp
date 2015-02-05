@@ -39,9 +39,9 @@ void DriveTrain::InitDefaultCommand()
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
-		
+	/**
 	//Deadband for left!!!!!!!!!!!!!!!!!
-	if (abs(leftAxis) >= 0.14) {
+	if (abs(leftAxis) >= 0.09f) {
 
 		talonRightMaster->Set(leftAxis);
 	} else {
@@ -49,12 +49,16 @@ void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 	}
 
 	//deadband for Right!!!!!!!!!!!!!!!!!!!
-	if (abs(rightAxis) >= 0.14f) {
+	if (abs(rightAxis) >= 0.09f) {
 
 		talonLeftMaster->Set(rightAxis);
 	} else {
 		talonLeftMaster->Set(0.0f);
 	}
+	**/
+	talonRightMaster->Set(-rightAxis);
+	talonLeftMaster->Set(leftAxis);
+
 }
 
 

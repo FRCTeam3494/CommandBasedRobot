@@ -14,6 +14,7 @@ private:
 	{
 		CommandBase::init();
 //		autonomousCommand = new ExampleCommand();
+		SmartDashboard::init();
 		lw = LiveWindow::GetInstance();
 	}
 	

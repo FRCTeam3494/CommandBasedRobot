@@ -1,12 +1,12 @@
 #include "Drive.h"
 
-using namespace CommandBase;
+
 
 Drive::Drive()
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis)
-	Requires(driveTrain);
+	Requires(CommandBase::driveTrain);
 }
 
 // Called just before this Command runs the first time
@@ -17,7 +17,10 @@ void Drive::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void Drive::Execute()
 {
-	driveTrain->TankDrive(oi->GetLeftJoystick(), oi->GetRightJoystick()); // TODO fix joystick
+
+
+	CommandBase::driveTrain->TankDrive(oi->GetLeftJoystick(), oi->GetRightJoystick()); // TODO fix joystick
+	SmartDashboard::PutData(driveTrain);
 	//CommandBase::driveTrain->TankDrive(1, -1);
 }
 
