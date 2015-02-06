@@ -58,9 +58,10 @@ void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 	}
 	**/
 
+	float Kp = 0.03; // put as property of some other class... but do this temporarily
 	float angle = gyro->GetAngle();
-	talonRightMaster->Set(-angle * 0.03);
-	talonLeftMaster->Set(-angle * 0.03);
+	talonRightMaster->Set(rightAxis - angle * Kp);
+	talonLeftMaster->Set(leftAxis + angle * Kp);
 
 	/*
 	talonRightMaster->Set(-rightAxis);
