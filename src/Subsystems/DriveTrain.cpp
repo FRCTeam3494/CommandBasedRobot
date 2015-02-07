@@ -11,12 +11,12 @@ DriveTrain::DriveTrain() :
 	talonRightFollower = new CANTalon(RIGHT_MOTOR_FOLLOWER);
 	
 	// Talon 2 follow 1
-	talonLeftFollower->SetControlMode(CANSpeedController::kFollower);
-	talonLeftFollower->Set(LEFT_MOTOR_MASTER);
-
-	//Talon 4 follow 3
 	talonRightFollower->SetControlMode(CANSpeedController::kFollower);
 	talonRightFollower->Set(RIGHT_MOTOR_MASTER);
+
+	//Talon 4 follow 3
+	talonLeftFollower->SetControlMode(CANSpeedController::kFollower);
+	talonLeftFollower->Set(LEFT_MOTOR_MASTER);
 
 	talonLeftMaster->EnableControl();
 	talonRightMaster->EnableControl();
@@ -31,6 +31,16 @@ DriveTrain::DriveTrain() :
 	gyro = new Gyro(0);
 }
 
+float DriveTrain::GetAngle()
+{
+	return gyro->GetAngle();
+}
+
+void DriveTrain::ResetGyro()
+{
+	gyro->Reset();
+}
+
 void DriveTrain::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.
@@ -40,10 +50,9 @@ void DriveTrain::InitDefaultCommand()
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
-	/**
+/*
 	//Deadband for left!!!!!!!!!!!!!!!!!
 	if (abs(leftAxis) >= 0.09f) {
-
 		talonRightMaster->Set(leftAxis);
 	} else {
 		talonRightMaster->Set(0.0f);
@@ -51,22 +60,16 @@ void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 
 	//deadband for Right!!!!!!!!!!!!!!!!!!!
 	if (abs(rightAxis) >= 0.09f) {
-
 		talonLeftMaster->Set(rightAxis);
 	} else {
 		talonLeftMaster->Set(0.0f);
 	}
-	**/
 
-	float Kp = 0.03; // put as property of some other class... but do this temporarily
-	float angle = gyro->GetAngle();
-	talonRightMaster->Set(rightAxis - angle * Kp);
-	talonLeftMaster->Set(leftAxis + angle * Kp);
+*/
 
-	/*
-	talonRightMaster->Set(-rightAxis);
+	talonRightMaster->Set(rightAxis);
 	talonLeftMaster->Set(leftAxis);
-	*/
+
 
 }
 

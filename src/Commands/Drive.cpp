@@ -11,16 +11,19 @@ Drive::Drive()
 
 // Called just before this Command runs the first time
 void Drive::Initialize()
+
 {
 }
 
 // Called repeatedly when this Command is scheduled to run
 void Drive::Execute()
 {
+	float leftThrottle = -1 * oi->GetLeftJoystick();
+	float rightThrottle = oi->GetRightJoystick();
 
-
-	CommandBase::driveTrain->TankDrive(oi->GetLeftJoystick(), oi->GetRightJoystick()); // TODO fix joystick
-	SmartDashboard::PutData(driveTrain);
+	CommandBase::driveTrain->TankDrive(leftThrottle, rightThrottle); // TODO fix joystick
+	SmartDashboard::PutNumber("Left", leftThrottle);
+	SmartDashboard::PutNumber("Right", rightThrottle);
 	//CommandBase::driveTrain->TankDrive(1, -1);
 }
 

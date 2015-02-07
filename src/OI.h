@@ -11,6 +11,15 @@ public:
 	OI();
 	float GetLeftJoystick();
 	float GetRightJoystick();
+
+	JoystickButton* buttonA;
+	JoystickButton* buttonB;
+	JoystickButton* buttonX;
+	JoystickButton* buttonY;
+	JoystickButton* buttonLB;
+	JoystickButton* buttonRB;
+	JoystickButton* buttonStart;
+	JoystickButton* buttonSelect;
 };
 
 #endif
