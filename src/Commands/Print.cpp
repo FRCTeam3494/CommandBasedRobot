@@ -15,7 +15,7 @@ void Print::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void Print::Execute()
 {
-	SmartDashboard::PutString("Hello","fried tomatoes");
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
