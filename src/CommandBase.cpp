@@ -24,5 +24,6 @@ void CommandBase::init()
 
 
 	oi = new OI();
-	//drivetrain = new DriveTrain();
+	drivetrain = new DriveTrain();
+	ircheck = new IrCheck();
 }

@@ -8,7 +8,10 @@ IrCheck::IrCheck()
 	{
 		if(IrDetect::OpticalState == TRUE)
 		{
-
+			SmartDashboard::PutString("off", "");
+		}
+		else {
+			SmartDashboard::PutString("on", "");
 		}
 	}
 }

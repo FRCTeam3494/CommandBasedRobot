@@ -1,6 +1,6 @@
 #ifndef COMMAND_BASE_H
 #define COMMAND_BASE_H
-
+#include "Subsystems/IrCheck.h"
 #include <string>
 #include "Commands/Command.h"
 #include "Subsystems/DriveTrain.h"
@@ -22,6 +22,7 @@ public:
 
 	static OI *oi;
 	static DriveTrain* drivetrain;
+	static IrCheck* ircheck;
 };
 
 #endif
