@@ -5,6 +5,7 @@
 OI::OI() {
 	// Process operator interface input here.
 	controller = new Joystick(1);
+	controller_2 = new Joystick(2);
 
 /**
  * XBOX 360 Axes:
@@ -41,6 +42,16 @@ float OI::GetLeftTrigger() {
 
 float OI::GetRightTrigger(){
 	return controller->GetRawAxis(3);
+}
+
+float OI::GetLeftJoystick_2()
+{
+	return controller_2->GetRawAxis(1);
+}
+
+float OI::GetRightJoystick_2()
+{
+	return controller_2->GetRawAxis(2);
 }
 
 /*#include "OI.h"

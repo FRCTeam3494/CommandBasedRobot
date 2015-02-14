@@ -5,6 +5,8 @@
 #include "Commands/Command.h"
 #include "Subsystems/DriveTrain.h"
 #include "Subsystems/Lift.h"
+#include "Subsystems/Kompressor.h"
+#include "Subsystems/Pusher.h"
 #include "OI.h"
 #include "WPILib.h"
 
@@ -24,6 +26,8 @@ public:
 	static OI *oi;
 	static DriveTrain* driveTrain;
 	static Lift* lift;
+	static Kompressor* kompressor;
+	static Pusher* pusher;
 };
 
 #endif

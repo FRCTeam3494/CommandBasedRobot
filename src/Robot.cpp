@@ -2,6 +2,7 @@
 
 #include "WPILib.h"
 #include "Commands/Command.h"
+#include "Commands/checkPressure.h"
 #include "CommandBase.h"
 
 class Robot: public IterativeRobot
@@ -9,11 +10,13 @@ class Robot: public IterativeRobot
 private:
 	Command *autonomousCommand;
 	LiveWindow *lw;
+	Command *CheckPressure;
 
 	void RobotInit()
 	{
 		CommandBase::init();
 //		autonomousCommand = new ExampleCommand();
+		CheckPressure = new checkPressure();
 		SmartDashboard::init();
 		lw = LiveWindow::GetInstance();
 	}
@@ -32,6 +35,7 @@ private:
 	void AutonomousPeriodic()
 	{
 		Scheduler::GetInstance()->Run();
+		//Scheduler::GetInstance()->
 	}
 
 	void TeleopInit()
@@ -47,6 +51,9 @@ private:
 	void TeleopPeriodic()
 	{
 		Scheduler::GetInstance()->Run();
+		//AddParallel(new CheckPressure->Run());
+		Scheduler::GetInstance()->AddCommand(new checkPressure());
+
 	}
 
 	void TestPeriodic()
