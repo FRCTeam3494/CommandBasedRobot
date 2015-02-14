@@ -28,11 +28,11 @@ buttonA->WhenPressed(new Turn(90, 0.2));
 }
 
 float OI::GetLeftJoystick() {
-	return controller->GetRawAxis(1);
+	return 1 * controller->GetRawAxis(1);
 }
 
 float OI::GetRightJoystick() {
-	return controller->GetRawAxis(5);
+	return -1 * controller->GetRawAxis(5);
 }
 
 /*#include "OI.h"

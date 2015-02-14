@@ -10,9 +10,11 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 	CANTalon* talonLeftMaster;
-	CANTalon* talonLeftFollower;
+	CANTalon* talonLeftFollowerA;
+	CANTalon* talonLeftFollowerB;
 	CANTalon* talonRightMaster;
-	CANTalon* talonRightFollower;
+	CANTalon* talonRightFollowerA;
+	CANTalon* talonRightFollowerB;
 
 public:
 	DriveTrain();

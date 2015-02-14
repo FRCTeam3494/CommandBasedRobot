@@ -18,7 +18,7 @@ void Drive::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void Drive::Execute()
 {
-	float leftThrottle = -1 * oi->GetLeftJoystick();
+	float leftThrottle = oi->GetLeftJoystick();
 	float rightThrottle = oi->GetRightJoystick();
 
 	CommandBase::driveTrain->TankDrive(leftThrottle, rightThrottle); // TODO fix joystick

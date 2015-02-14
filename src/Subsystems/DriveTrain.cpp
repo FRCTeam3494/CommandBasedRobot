@@ -6,17 +6,25 @@ DriveTrain::DriveTrain() :
 		Subsystem("DriveTrain")
 {
 	talonLeftMaster = new CANTalon(LEFT_MOTOR_MASTER);
-	talonLeftFollower = new CANTalon(LEFT_MOTOR_FOLLOWER);
+	talonLeftFollowerA = new CANTalon(LEFT_MOTOR_FOLLOWER_A);
+	talonLeftFollowerB = new CANTalon(LEFT_MOTOR_FOLLOWER_B);
 	talonRightMaster = new CANTalon(RIGHT_MOTOR_MASTER);
-	talonRightFollower = new CANTalon(RIGHT_MOTOR_FOLLOWER);
+	talonRightFollowerA = new CANTalon(RIGHT_MOTOR_FOLLOWER_A);
+	talonRightFollowerB = new CANTalon(RIGHT_MOTOR_FOLLOWER_B);
 	
 	// Talon 2 follow 1
-	talonRightFollower->SetControlMode(CANSpeedController::kFollower);
-	talonRightFollower->Set(RIGHT_MOTOR_MASTER);
+	talonRightFollowerA->SetControlMode(CANSpeedController::kFollower);
+	talonRightFollowerA->Set(RIGHT_MOTOR_MASTER);
+
+	talonRightFollowerB->SetControlMode(CANSpeedController::kFollower);
+	talonRightFollowerB->Set(RIGHT_MOTOR_MASTER);
 
 	//Talon 4 follow 3
-	talonLeftFollower->SetControlMode(CANSpeedController::kFollower);
-	talonLeftFollower->Set(LEFT_MOTOR_MASTER);
+	talonLeftFollowerA->SetControlMode(CANSpeedController::kFollower);
+	talonLeftFollowerA->Set(LEFT_MOTOR_MASTER);
+
+	talonLeftFollowerB->SetControlMode(CANSpeedController::kFollower);
+	talonLeftFollowerB->Set(LEFT_MOTOR_MASTER);
 
 	talonLeftMaster->EnableControl();
 	talonRightMaster->EnableControl();
