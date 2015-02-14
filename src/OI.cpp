@@ -7,7 +7,7 @@ OI::OI() {
 	controller = new Joystick(1);
 
 /**
- * XBOX 360:
+ * XBOX 360 Axes:
  * 1: Left Y Axis
  * 2: Left Trigger
  * 3: Right Trigger
@@ -33,6 +33,14 @@ float OI::GetLeftJoystick() {
 
 float OI::GetRightJoystick() {
 	return -1 * controller->GetRawAxis(5);
+}
+
+float OI::GetLeftTrigger() {
+	return controller->GetRawAxis(2);
+}
+
+float OI::GetRightTrigger(){
+	return controller->GetRawAxis(3);
 }
 
 /*#include "OI.h"

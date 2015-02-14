@@ -30,4 +30,8 @@ const int RIGHT_MOTOR_FOLLOWER_B = 3;
 const int RIGHT_JOYSTICK    = 5;
 const int LEFT_JOYSTICK     = 1;
 
+//unsure about these
+const int LEFT_LIFT = 7;
+const int RIGHT_LIFT = 8;
+
 #endif

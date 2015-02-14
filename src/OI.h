@@ -11,6 +11,8 @@ public:
 	OI();
 	float GetLeftJoystick();
 	float GetRightJoystick();
+	float GetLeftTrigger();
+	float GetRightTrigger();
 
 	JoystickButton* buttonA;
 	JoystickButton* buttonB;
