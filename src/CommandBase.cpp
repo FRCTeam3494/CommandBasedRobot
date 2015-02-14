@@ -5,6 +5,7 @@
 // Initialize a single static instance of all of your subsystems to NULL
 DriveTrain* CommandBase::driveTrain = NULL;
 OI* CommandBase::oi = NULL;
+IRSensor* CommandBase::irsensor = NULL;
 
 CommandBase::CommandBase(char const *name) :
 		Command(name)
@@ -24,5 +25,6 @@ void CommandBase::init()
 
 	driveTrain = new DriveTrain();
 	oi = new OI();
+	irsensor = new IRSensor();
 
 }

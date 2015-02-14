@@ -1,6 +1,7 @@
 #ifndef COMMAND_BASE_H
 #define COMMAND_BASE_H
 
+#include <Subsystems/Lift.h>
 #include <string>
 #include "Commands/Command.h"
 #include "Subsystems/DriveTrain.h"
@@ -22,6 +23,7 @@ public:
 
 	static OI *oi;
 	static DriveTrain* driveTrain;
+	static IRSensor* irsensor;
 };
 
 #endif
