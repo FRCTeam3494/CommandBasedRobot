@@ -6,9 +6,14 @@
 #include "Commands/Command.h"
 #include "Subsystems/DriveTrain.h"
 #include "Subsystems/Lift.h"
+<<<<<<< HEAD
 #include "Subsystems/Rollers.h"
 #include "Subsystems/Kompressor.h"
 #include "Subsystems/Solenoids.h"
+=======
+#include "Subsystems/Kompressor.h"
+#include "Subsystems/Pusher.h"
+>>>>>>> origin/practice_robot
 #include "OI.h"
 #include "WPILib.h"
 
@@ -29,9 +34,14 @@ public:
 	static OI *oi;
 	static DriveTrain* driveTrain;
 	static Lift* lift;
+<<<<<<< HEAD
 	static Rollers* roller;
 	static Kompressor* kompressor;
 	static Solenoids* solenoids;
+=======
+	static Kompressor* kompressor;
+	static Pusher* pusher;
+>>>>>>> origin/practice_robot
 };
 
 #endif

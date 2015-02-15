@@ -61,6 +61,7 @@ float OI::GetRightTrigger(){
 	return controller->GetRawAxis(3);
 }
 
+<<<<<<< HEAD
 
 
 
@@ -70,6 +71,17 @@ float OI::GetRightTrigger(){
 
 
 
+=======
+float OI::GetLeftJoystick_2()
+{
+	return controller_2->GetRawAxis(1);
+}
+
+float OI::GetRightJoystick_2()
+{
+	return controller_2->GetRawAxis(2);
+}
+>>>>>>> origin/practice_robot
 
 /*#include "OI.h"
  #include "Commands/Print.h"

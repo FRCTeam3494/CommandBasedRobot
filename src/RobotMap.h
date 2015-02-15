@@ -30,10 +30,11 @@ const int RIGHT_MOTOR_FOLLOWER_B = 3;
 const int RIGHT_JOYSTICK    = 5;
 const int LEFT_JOYSTICK     = 1;
 
-//unsure about these
+//unsure about these(These are talons)
 const int LEFT_LIFT = 7;
 const int RIGHT_LIFT = 8;
 
+<<<<<<< HEAD
 const int LEFT_ROLLER = 0;
 const int RIGHT_ROLLER = 1;
 
@@ -43,5 +44,9 @@ const int Solenoid_Roller = 1;
 const int Solenoid_Shifter = 2;
 const int Solenoid_Pusher = 3;
 
+=======
+const int PUSHER_RIGHT = 0;
+const int PUSHER_LEFT = 1;
+>>>>>>> origin/practice_robot
 
 #endif
