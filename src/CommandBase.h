@@ -2,11 +2,16 @@
 #define COMMAND_BASE_H
 
 #include <string>
+#include "Commands/Scheduler.h"
 #include "Commands/Command.h"
 #include "Subsystems/DriveTrain.h"
 #include "Subsystems/Lift.h"
+#include "Subsystems/Rollers.h"
+#include "Subsystems/Kompressor.h"
+#include "Subsystems/Solenoids.h"
 #include "OI.h"
 #include "WPILib.h"
+
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -24,6 +29,9 @@ public:
 	static OI *oi;
 	static DriveTrain* driveTrain;
 	static Lift* lift;
+	static Rollers* roller;
+	static Kompressor* kompressor;
+	static Solenoids* solenoids;
 };
 
 #endif

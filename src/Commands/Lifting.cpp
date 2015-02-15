@@ -4,9 +4,12 @@
 
 Lifting::Lifting()
 {
+
+	magnitude_lift = 0;
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis)
-	//Requires(CommandBase::lift);
+
+	Requires(CommandBase::lift);
 }
 
 // Called just before this Command runs the first time
@@ -17,14 +20,26 @@ void Lifting::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void Lifting::Execute()
 {
+if ( oi->GetRightTrigger() && oi->GetLeftTrigger() >.20)
+{
+	magnitude_lift = 0;
 
+}
+else if(oi->GetRightTrigger() > .25)
+{
+magnitude_lift = oi->GetRightTrigger()/2;
+}
+else if (oi->GetLeftTrigger() > .25)
+{
+magnitude_lift = -oi->GetLeftTrigger()/2;
+}
+else
+{
+	magnitude_lift = 0;
+}
+	CommandBase::lift->move(magnitude_lift);
 
-	//THINK OF SOLUTION
-	//GET INPUT HERE
-	float magnitude = (oi->GetLeftTrigger() + oi->GetRightTrigger())/2;
-	CommandBase::lift->move(magnitude);
-
-	SmartDashboard::PutNumber("Magnitude", magnitude);
+	SmartDashboard::PutNumber("Magnitude", magnitude_lift);
 }
 
 // Make this return true when this Command no longer needs to run execute()

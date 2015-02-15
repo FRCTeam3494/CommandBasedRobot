@@ -5,6 +5,7 @@
 #include "WPILib.h"
 #include "Subsystems/Lift.h"
 
+
 class Lifting: public CommandBase
 {
 public:
@@ -16,6 +17,7 @@ public:
 	void Interrupted();
 
 private:
+	float magnitude_lift;
 	//LiftingTrain* LiftingTrain;
 };
 

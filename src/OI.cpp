@@ -1,10 +1,14 @@
 #include "OI.h"
 #include "RobotMap.h"
 #include "Commands/Turn.h"
+#include "Commands/Set_Roller.h"
+#include "Commands/Lifting.h"
+
 
 OI::OI() {
 	// Process operator interface input here.
 	controller = new Joystick(1);
+	controller_2 = new Joystick(2);
 
 /**
  * XBOX 360 Axes:
@@ -23,7 +27,21 @@ buttonRB = new JoystickButton(controller, 6);
 buttonStart = new JoystickButton(controller, 8);
 buttonSelect = new JoystickButton(controller, 7);
 
+buttonA_2 = new JoystickButton(controller_2, 1);  //  xbox or whats
+buttonB_2 = new JoystickButton(controller_2, 2);
+buttonX_2 = new JoystickButton(controller_2, 3);
+buttonY_2 = new JoystickButton(controller_2, 4);
+buttonLB_2 = new JoystickButton(controller_2, 5);
+buttonRB_2 = new JoystickButton(controller_2, 6);
+buttonStart_2 = new JoystickButton(controller_2, 8);
+buttonSelect_2 = new JoystickButton(controller_2, 7);
+
+
+
 buttonA->WhenPressed(new Turn(90, 0.2));
+buttonLB->WhileHeld(new Set_Roller(.4));
+buttonRB->WhileHeld(new Set_Roller(-.4));
+
 
 }
 
@@ -42,6 +60,16 @@ float OI::GetLeftTrigger() {
 float OI::GetRightTrigger(){
 	return controller->GetRawAxis(3);
 }
+
+
+
+
+
+
+
+
+
+
 
 /*#include "OI.h"
  #include "Commands/Print.h"

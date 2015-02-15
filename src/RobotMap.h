@@ -34,4 +34,14 @@ const int LEFT_JOYSTICK     = 1;
 const int LEFT_LIFT = 7;
 const int RIGHT_LIFT = 8;
 
+const int LEFT_ROLLER = 0;
+const int RIGHT_ROLLER = 1;
+
+const int compressor_int = 0;
+
+const int Solenoid_Roller = 1;
+const int Solenoid_Shifter = 2;
+const int Solenoid_Pusher = 3;
+
+
 #endif
