@@ -1,5 +1,130 @@
 #include "DriveTrain.h"
 #include "../RobotMap.h"
+#include "../Commands/Drive.h"
+#include "../Commands/DriveBase_Command_Group.h"
+
+DriveTrain::DriveTrain() :
+Subsystem("DriveTrain")
+{
+	talonLeftMaster = new CANTalon(LEFT_MOTOR_MASTER);
+	talonLeftFollowerA = new CANTalon(LEFT_MOTOR_FOLLOWER_A);
+	talonLeftFollowerB = new CANTalon(LEFT_MOTOR_FOLLOWER_B);
+	talonRightMaster = new CANTalon(RIGHT_MOTOR_MASTER);
+	talonRightFollowerA = new CANTalon(RIGHT_MOTOR_FOLLOWER_A);
+	talonRightFollowerB = new CANTalon(RIGHT_MOTOR_FOLLOWER_B);
+
+	// Talon 2 follow 1
+	talonRightFollowerA->SetControlMode(CANSpeedController::kFollower);
+	talonRightFollowerA->Set(RIGHT_MOTOR_MASTER);
+
+	talonRightFollowerB->SetControlMode(CANSpeedController::kFollower);
+	talonRightFollowerB->Set(RIGHT_MOTOR_MASTER);
+
+	//Talon 4 follow 3
+	talonLeftFollowerA->SetControlMode(CANSpeedController::kFollower);
+	talonLeftFollowerA->Set(LEFT_MOTOR_MASTER);
+
+	talonLeftFollowerB->SetControlMode(CANSpeedController::kFollower);
+	talonLeftFollowerB->Set(LEFT_MOTOR_MASTER);
+
+	talonLeftMaster->EnableControl();
+	talonRightMaster->EnableControl();
+
+	talonLeftMaster->SetSafetyEnabled(true);
+	talonLeftMaster->SetExpiration(0.100);
+	talonLeftMaster->Set(0);
+
+	talonRightMaster->SetSafetyEnabled(true);
+	talonRightMaster->SetExpiration(0.100);
+	talonRightMaster->Set(0);
+
+	gyro = new Gyro(0);
+
+
+	solenoid_Shifter = new DoubleSolenoid(6,7);
+
+	//false equals low gear
+	currentGear = false;
+
+}
+
+float DriveTrain::GetAngle()
+{
+	return gyro->GetAngle();
+}
+
+void DriveTrain::ResetGyro()
+{
+	gyro->Reset();
+}
+
+void DriveTrain::InitDefaultCommand()
+{
+	// Set the default command for a subsystem here.
+	SetDefaultCommand(new Drive());
+}
+
+// Put methods for controlling this subsystem
+// here. Call these from Commands.
+void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
+	/*
+	//Deadband for left!!!!!!!!!!!!!!!!!
+	if (abs(leftAxis) >= 0.09f) {
+		talonRightMaster->Set(leftAxis);
+	} else {
+		talonRightMaster->Set(0.0f);
+	}
+
+	//deadband for Right!!!!!!!!!!!!!!!!!!!
+	if (abs(rightAxis) >= 0.09f) {
+		talonLeftMaster->Set(rightAxis);
+	} else {
+		talonLeftMaster->Set(0.0f);
+	}
+
+	 */
+
+	talonRightMaster->Set(rightAxis);
+	talonLeftMaster->Set(leftAxis);
+
+
+}
+
+void DriveTrain::ChangeGear(bool _gear)
+{
+	if(currentGear == _gear)
+	{
+
+	}
+	else
+	{
+		if (_gear)
+		{
+			//solenoid_Shifter_Right->Set(solenoid_Shifter_Right->kForward);
+			solenoid_Shifter->Set(solenoid_Shifter->kForward);
+
+		}
+		else if (!_gear)
+		{
+
+			//solenoid_Shifter_Right->Set(solenoid_Shifter_Right->kReverse);
+			solenoid_Shifter->Set(solenoid_Shifter->kReverse);
+
+		}
+		currentGear = _gear;
+	}
+
+
+
+	//solenoid_Shifter->Set(solenoid_Shifter->kOff);
+
+
+
+}
+
+
+/*#include "DriveTrain.h"
+#include "../RobotMap.h"
 
 DriveTrain::DriveTrain() :
 	Subsystem("DriveTrain") {
@@ -60,3 +185,4 @@ void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
+ */

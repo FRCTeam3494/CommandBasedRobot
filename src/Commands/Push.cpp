@@ -1,40 +1,38 @@
-#include "Print.h"
-#include "Subsystems/Lift.h"
-Print::Print()
+#include "Push.h"
+
+Push::Push()
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 }
 
 // Called just before this Command runs the first time
-void Print::Initialize()
+void Push::Initialize()
 {
-	SmartDashboard::init();
+
 }
 
 // Called repeatedly when this Command is scheduled to run
-void Print::Execute()
+void Push::Execute()
 {
-	SmartDashboard::PutBoolean("Digital_Encoder", CommandBase::lift->ReachLimit());
-
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool Print::IsFinished()
+bool Push::IsFinished()
 {
 	return false;
 }
 
 // Called once after isFinished returns true
-void Print::End()
+void Push::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void Print::Interrupted()
+void Push::Interrupted()
 {
 
 }

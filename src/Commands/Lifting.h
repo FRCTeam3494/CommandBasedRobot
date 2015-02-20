@@ -1,14 +1,15 @@
-#ifndef DRIVE_H
-#define DRIVE_H
+#ifndef Lifting_H
+#define Lifting_H
 
 #include "../CommandBase.h"
 #include "WPILib.h"
-#include "Subsystems/DriveTrain.h"
+#include "Subsystems/Lift.h"
 
-class Drive: public CommandBase
+
+class Lifting: public CommandBase
 {
 public:
-	Drive();
+	Lifting();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -16,7 +17,8 @@ public:
 	void Interrupted();
 
 private:
-	//DriveTrain* driveTrain;
+	float magnitude_lift;
+	//LiftingTrain* LiftingTrain;
 };
 
 #endif

@@ -1,22 +1,21 @@
-#ifndef DRIVE_H
-#define DRIVE_H
+#ifndef Set_Roller_H
+#define Set_Roller_H
 
 #include "../CommandBase.h"
+#include "../Subsystems/Rollers.h"
 #include "WPILib.h"
-#include "Subsystems/DriveTrain.h"
 
-class Drive: public CommandBase
+class Set_Roller: public CommandBase
 {
 public:
-	Drive();
+	Set_Roller(float _on_roller);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
-
 private:
-	//DriveTrain* driveTrain;
+	float on_roller;
 };
 
 #endif

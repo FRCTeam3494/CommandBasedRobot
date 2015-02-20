@@ -1,40 +1,41 @@
-#include "Print.h"
-#include "Subsystems/Lift.h"
-Print::Print()
+#include "Compressor_Closed_Loop.h"
+#include "Subsystems/Kompressor.h"
+
+Compressor_Closed_Loop::Compressor_Closed_Loop()
 {
+
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 }
 
 // Called just before this Command runs the first time
-void Print::Initialize()
+void Compressor_Closed_Loop::Initialize()
 {
-	SmartDashboard::init();
+
+
 }
 
 // Called repeatedly when this Command is scheduled to run
-void Print::Execute()
+void Compressor_Closed_Loop::Execute()
 {
-	SmartDashboard::PutBoolean("Digital_Encoder", CommandBase::lift->ReachLimit());
-
-
+//CommandBase::kompressor->Kompressor_Toggle();
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool Print::IsFinished()
+bool Compressor_Closed_Loop::IsFinished()
 {
 	return false;
 }
 
 // Called once after isFinished returns true
-void Print::End()
+void Compressor_Closed_Loop::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void Print::Interrupted()
+void Compressor_Closed_Loop::Interrupted()
 {
 
 }

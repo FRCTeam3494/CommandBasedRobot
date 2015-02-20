@@ -1,40 +1,40 @@
-#include "Print.h"
-#include "Subsystems/Lift.h"
-Print::Print()
+#include "Shift_Down.h"
+#include "Subsystems/DriveTrain.h"
+
+Shift_Down::Shift_Down()
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
 }
 
 // Called just before this Command runs the first time
-void Print::Initialize()
+void Shift_Down::Initialize()
 {
 	SmartDashboard::init();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void Print::Execute()
+void Shift_Down::Execute()
 {
-	SmartDashboard::PutBoolean("Digital_Encoder", CommandBase::lift->ReachLimit());
-
-
+	CommandBase::driveTrain->ChangeGear(false);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool Print::IsFinished()
+bool Shift_Down::IsFinished()
 {
+	SmartDashboard::PutString("Roller_State","DONE");
 	return false;
 }
 
 // Called once after isFinished returns true
-void Print::End()
+void Shift_Down::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void Print::Interrupted()
+void Shift_Down::Interrupted()
 {
 
 }

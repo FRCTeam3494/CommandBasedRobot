@@ -1,22 +1,18 @@
-#ifndef DRIVE_H
-#define DRIVE_H
+#ifndef Shift_Down_H
+#define Shift_Down_H
 
 #include "../CommandBase.h"
 #include "WPILib.h"
-#include "Subsystems/DriveTrain.h"
 
-class Drive: public CommandBase
+class Shift_Down: public CommandBase
 {
 public:
-	Drive();
+	Shift_Down();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
-
-private:
-	//DriveTrain* driveTrain;
 };
 
 #endif

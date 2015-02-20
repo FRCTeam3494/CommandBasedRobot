@@ -1,22 +1,18 @@
-#ifndef DRIVE_H
-#define DRIVE_H
+#ifndef Solenoid_Shifter_Set_H
+#define Solenoid_Shifter_Set_H
 
 #include "../CommandBase.h"
 #include "WPILib.h"
-#include "Subsystems/DriveTrain.h"
 
-class Drive: public CommandBase
+class Solenoid_Shifter_Set: public CommandBase
 {
 public:
-	Drive();
+	Solenoid_Shifter_Set();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
-
-private:
-	//DriveTrain* driveTrain;
 };
 
 #endif

@@ -1,40 +1,44 @@
-#include "Print.h"
-#include "Subsystems/Lift.h"
-Print::Print()
+#include "Set_Roller.h"
+
+Set_Roller::Set_Roller(float _on_roller)
 {
-	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(chassis);
+
+	Requires(CommandBase::roller);
+
+
+on_roller = _on_roller;
+
+
 }
 
 // Called just before this Command runs the first time
-void Print::Initialize()
+void Set_Roller::Initialize()
 {
-	SmartDashboard::init();
+
 }
 
 // Called repeatedly when this Command is scheduled to run
-void Print::Execute()
+void Set_Roller::Execute()
 {
-	SmartDashboard::PutBoolean("Digital_Encoder", CommandBase::lift->ReachLimit());
-
+	CommandBase::roller->Roll(on_roller);
 
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool Print::IsFinished()
+bool Set_Roller::IsFinished()
 {
 	return false;
 }
 
 // Called once after isFinished returns true
-void Print::End()
+void Set_Roller::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void Print::Interrupted()
+void Set_Roller::Interrupted()
 {
 
 }

@@ -1,14 +1,14 @@
-#ifndef DRIVE_H
-#define DRIVE_H
+#ifndef TURN_H
+#define TURN_H
 
 #include "../CommandBase.h"
 #include "WPILib.h"
 #include "Subsystems/DriveTrain.h"
 
-class Drive: public CommandBase
+class Turn: public CommandBase
 {
 public:
-	Drive();
+	Turn(float _angle, float _speed);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -16,7 +16,9 @@ public:
 	void Interrupted();
 
 private:
-	//DriveTrain* driveTrain;
+	float angle;
+	float speed;
+	bool slow;
 };
 
 #endif

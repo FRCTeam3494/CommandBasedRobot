@@ -1,22 +1,18 @@
-#ifndef DRIVE_H
-#define DRIVE_H
+#ifndef Push_H
+#define Push_H
 
 #include "../CommandBase.h"
 #include "WPILib.h"
-#include "Subsystems/DriveTrain.h"
 
-class Drive: public CommandBase
+class Push: public CommandBase
 {
 public:
-	Drive();
+	Push();
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
-
-private:
-	//DriveTrain* driveTrain;
 };
 
 #endif
