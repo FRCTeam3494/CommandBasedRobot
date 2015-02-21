@@ -15,7 +15,7 @@ private:
 	CANTalon* talonRightMaster;
 	CANTalon* talonRightFollowerA;
 	CANTalon* talonRightFollowerB;
-
+	double encoder_1;
 	DoubleSolenoid* solenoid_Shifter;
 
 

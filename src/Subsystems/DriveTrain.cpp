@@ -46,7 +46,7 @@ Subsystem("DriveTrain")
 	//false equals low gear
 	currentGear = false;
 
-
+	encoder_1 = talonLeftMaster->GetEncPosition();
 
 
 }
@@ -89,7 +89,7 @@ void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 
 	talonRightMaster->Set(rightAxis);
 	talonLeftMaster->Set(leftAxis);
-
+	SmartDashboard::PutNumber("encoder_1", encoder_1);
 
 }
 
