@@ -28,6 +28,8 @@ public:
 	void ChangeGear(bool _gear);
 	Gyro* gyro;
 
+
+
 private:
 
 	bool currentGear;

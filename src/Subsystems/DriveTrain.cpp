@@ -46,6 +46,9 @@ Subsystem("DriveTrain")
 	//false equals low gear
 	currentGear = false;
 
+
+
+
 }
 
 float DriveTrain::GetAngle()
