@@ -3,9 +3,12 @@
 #include "../Commands/Drive.h"
 #include "../Commands/DriveBase_Command_Group.h"
 
+//0.478779 meters per revolution
+//20166 encoder units per meter
+//9451 encoder units per revolution
+
 DriveTrain::DriveTrain() :
-Subsystem("DriveTrain")
-{
+		Subsystem("DriveTrain") {
 	talonLeftMaster = new CANTalon(LEFT_MOTOR_MASTER);
 	talonLeftFollowerA = new CANTalon(LEFT_MOTOR_FOLLOWER_A);
 	talonLeftFollowerB = new CANTalon(LEFT_MOTOR_FOLLOWER_B);
@@ -30,85 +33,92 @@ Subsystem("DriveTrain")
 	talonLeftMaster->EnableControl();
 	talonRightMaster->EnableControl();
 
-	talonLeftMaster->SetSafetyEnabled(true);
+	talonLeftMaster->SetSafetyEnabled(false);
 	talonLeftMaster->SetExpiration(0.100);
 	talonLeftMaster->Set(0);
 
-	talonRightMaster->SetSafetyEnabled(true);
+	talonRightMaster->SetSafetyEnabled(false);
 	talonRightMaster->SetExpiration(0.100);
 	talonRightMaster->Set(0);
 
 	gyro = new Gyro(0);
 
-
-	solenoid_Shifter = new DoubleSolenoid(6,7);
+	solenoid_Shifter = new DoubleSolenoid(6, 7);
 
 	//false equals low gear
 	currentGear = false;
 
-	encoder_1 = talonLeftMaster->GetEncPosition();
-
+	position = 0.0;
+	velocityLeft = 0.0;
+	velocityRight = 0.0;
 
 }
 
-float DriveTrain::GetAngle()
-{
+float DriveTrain::GetAngle() {
 	return gyro->GetAngle();
 }
 
-void DriveTrain::ResetGyro()
-{
+void DriveTrain::ResetGyro() {
 	gyro->Reset();
 }
 
-void DriveTrain::InitDefaultCommand()
-{
+float DriveTrain::GetPosition() {
+	return ((talonRightMaster->GetEncPosition()-talonLeftMaster->GetEncPosition())/2);
+}
+
+void DriveTrain::ResetEncoders() {
+	talonRightMaster->SetPosition(0);
+	talonLeftMaster->SetPosition(0);
+}
+
+void DriveTrain::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	SetDefaultCommand(new Drive());
+
 }
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
-	/*
-	//Deadband for left!!!!!!!!!!!!!!!!!
-	if (abs(leftAxis) >= 0.09f) {
-		talonRightMaster->Set(leftAxis);
-	} else {
-		talonRightMaster->Set(0.0f);
-	}
 
-	//deadband for Right!!!!!!!!!!!!!!!!!!!
-	if (abs(rightAxis) >= 0.09f) {
-		talonLeftMaster->Set(rightAxis);
-	} else {
-		talonLeftMaster->Set(0.0f);
-	}
+	/*
+	 //Deadband for left!!!!!!
+	 if (abs(leftAxis) >= 0.09f) {
+	 talonRightMaster->Set(leftAxis);
+	 } else {
+	 talonRightMaster->Set(0.0f);
+	 }
+
+	 //deadband for Right!!!!!!!!!!!!!!!!!!!
+	 if (abs(rightAxis) >= 0.09f) {
+	 talonLeftMaster->Set(rightAxis);
+	 } else {
+	 talonLeftMaster->Set(0.0f);
+	 }
 
 	 */
 
+	velocityRight = talonRightMaster->GetEncVel();
+	velocityLeft = talonLeftMaster->GetEncVel();
+
+	SmartDashboard::PutNumber("encoder Left Velocity", velocityLeft);
+	SmartDashboard::PutNumber("encoder_Right_Velocity", velocityRight);
+	SmartDashboard::PutNumber("Position", GetPosition());
+
 	talonRightMaster->Set(rightAxis);
 	talonLeftMaster->Set(leftAxis);
-	SmartDashboard::PutNumber("encoder_1", encoder_1);
 
 }
 
-void DriveTrain::ChangeGear(bool _gear)
-{
-	if(currentGear == _gear)
-	{
+void DriveTrain::ChangeGear(bool _gear) {
+	if (currentGear == _gear) {
 
-	}
-	else
-	{
-		if (_gear)
-		{
+	} else {
+		if (_gear) {
 			//solenoid_Shifter_Right->Set(solenoid_Shifter_Right->kForward);
 			solenoid_Shifter->Set(solenoid_Shifter->kForward);
 
-		}
-		else if (!_gear)
-		{
+		} else if (!_gear) {
 
 			//solenoid_Shifter_Right->Set(solenoid_Shifter_Right->kReverse);
 			solenoid_Shifter->Set(solenoid_Shifter->kReverse);
@@ -117,75 +127,5 @@ void DriveTrain::ChangeGear(bool _gear)
 		currentGear = _gear;
 	}
 
-
-
-	//solenoid_Shifter->Set(solenoid_Shifter->kOff);
-
-
-
 }
 
-
-/*#include "DriveTrain.h"
-#include "../RobotMap.h"
-
-DriveTrain::DriveTrain() :
-	Subsystem("DriveTrain") {
-	talon_1 = new CANTalon(1);
-	talon_2 = new CANTalon(2);
-	talon_3 = new CANTalon(3);
-	talon_4 = new CANTalon(4);
-
-	// Talon 2 follow 1
-	talon_2->SetControlMode(CANSpeedController::kFollower);
-	talon_2->Set(1);
-
-	//Talon 4 follow 3
-	talon_4->SetControlMode(CANSpeedController::kFollower);
-	talon_4->Set(3);
-
-	talon_1->EnableControl();
-	talon_3->EnableControl();
-
-	talon_1->SetSafetyEnabled(true);
-	talon_1->SetExpiration(0.100);
-	talon_1->Set(0);
-
-	talon_3->SetSafetyEnabled(true);
-	talon_3->SetExpiration(0.100);
-	talon_3->Set(0);
-}
-
-void DriveTrain::InitDefaultCommand() {
-	// Set the default command for a subsystem here.
-	//SetDefaultCommand(new MySpecialCommand());
-}
-
-void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
-
-
-	talon_1->Set(rightAxis);
-
-	//Deadband for left!!!!!!!!!!!!!!!!!
-	if (abs(leftAxis) >= 0.14) {
-
-		talon_3->Set(leftAxis);
-	} else {
-		talon_3->Set(0.0f);
-	}
-
-	//deadband for Right!!!!!!!!!!!!!!!!!!!
-	if (abs(rightAxis) >= 0.14f) {
-
-		talon_1->Set(rightAxis);
-	} else {
-		talon_1->Set(0.0f);
-	}
-
-	SmartDashboard::PutNumber("Y_Axis", leftAxis);
-	SmartDashboard::PutNumber("Other_Axis", rightAxis);
-}
-
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
- */

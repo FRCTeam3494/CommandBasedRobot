@@ -8,6 +8,9 @@
 #include "Commands/Shift_Down.h"
 #include "Commands/Compressor_Closed_Loop.h"
 #include "Commands/Solenoid_Roller_Set.h"
+#include "Subsystems/DriveTrain.h"
+#include "Commands/ResetEncoders.h"
+#include "Commands/Autonomous_Move.h"
 
 #include "Commands/Print.h"
 
@@ -51,6 +54,8 @@ buttonB->WhenPressed(new Shift());
 buttonX->WhenPressed(new Shift_Down());
 buttonLB->WhileHeld(new Set_Roller(.5));
 buttonRB->WhileHeld(new Set_Roller(-.5));
+buttonStart->WhenPressed(new ResetEncoders());
+buttonSelect->WhenPressed(new Autonomous_Move(1, 0.2));
 buttonSelect_2->WhenPressed(new Compressor_Closed_Loop());
 
 

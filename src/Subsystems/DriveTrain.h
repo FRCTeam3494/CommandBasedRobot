@@ -15,8 +15,13 @@ private:
 	CANTalon* talonRightMaster;
 	CANTalon* talonRightFollowerA;
 	CANTalon* talonRightFollowerB;
-	double encoder_1;
+	double position;
 	DoubleSolenoid* solenoid_Shifter;
+	double velocityRight;
+	double velocityLeft;
+
+	bool currentGear;
+	//true is low gear and false is second gear(numbers are too hard for me)
 
 
 public:
@@ -26,14 +31,10 @@ public:
 	float GetAngle();
 	void ResetGyro();
 	void ChangeGear(bool _gear);
+	void ResetEncoders();
+	float GetPosition();
 	Gyro* gyro;
 
-
-
-private:
-
-	bool currentGear;
-	//true is low gear and false is second gear(numbers are too hard for me)
 
 
 };
