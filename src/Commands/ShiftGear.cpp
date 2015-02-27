@@ -1,8 +1,11 @@
-#include "Shift.h"
+#include <Commands/ShiftGear.h>
 #include "Subsystems/DriveTrain.h"
 
-Shift::Shift()
+//true: shift up
+//false: shift down
+Shift::Shift(bool _mode)
 {
+	mode = _mode;
 	// Use Requires() here to declare subsystem dependencies
 	//Requires(CommandBase::driveTrain);
 	// eg. Requires(chassis);
@@ -17,7 +20,7 @@ void Shift::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void Shift::Execute()
 {
-CommandBase::driveTrain->ChangeGear(false);
+	CommandBase::driveTrain->ChangeGear(mode);
 }
 
 // Make this return true when this Command no longer needs to run execute()

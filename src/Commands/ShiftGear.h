@@ -1,18 +1,21 @@
-#ifndef Shift_Down_H
-#define Shift_Down_H
+#ifndef Shift_H
+#define Shift_H
 
 #include "../CommandBase.h"
 #include "WPILib.h"
 
-class Shift_Down: public CommandBase
+class Shift: public CommandBase
 {
 public:
-	Shift_Down();
+	Shift(bool _mode);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
+
+private:
+	bool mode;
 };
 
 #endif

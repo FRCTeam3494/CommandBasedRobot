@@ -15,7 +15,7 @@ void Print::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void Print::Execute()
 {
-	SmartDashboard::PutBoolean("Digital_Encoder", CommandBase::lift->ReachLimit());
+	//SmartDashboard::PutBoolean("Digital_Encoder", CommandBase::lift->ReachLimit());
 
 
 }

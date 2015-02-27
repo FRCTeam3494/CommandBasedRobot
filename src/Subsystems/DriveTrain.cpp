@@ -111,18 +111,14 @@ void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 }
 
 void DriveTrain::ChangeGear(bool _gear) {
-	if (currentGear == _gear) {
-
-	} else {
+	if (currentGear != _gear) {
 		if (_gear) {
-			//solenoid_Shifter_Right->Set(solenoid_Shifter_Right->kForward);
-			solenoid_Shifter->Set(solenoid_Shifter->kForward);
-
-		} else if (!_gear) {
-
-			//solenoid_Shifter_Right->Set(solenoid_Shifter_Right->kReverse);
+			//shifts up
 			solenoid_Shifter->Set(solenoid_Shifter->kReverse);
 
+		} else if (!_gear) {
+			//shifts down
+			solenoid_Shifter->Set(solenoid_Shifter->kForward);
 		}
 		currentGear = _gear;
 	}

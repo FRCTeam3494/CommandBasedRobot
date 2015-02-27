@@ -51,4 +51,11 @@ const int SOL_PUSH = 5;
 
 const int LEFT_LIFT_LIMIT = 0;
 
+//IR sensors
+
+const int LEFT_IR = 1;
+const int RIGHT_IR = 0;
+
+const int SENSOR_UP = 0;
+const int SENSOR_DOWN = 1;
 #endif

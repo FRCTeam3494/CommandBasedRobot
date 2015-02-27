@@ -20,7 +20,7 @@ private:
 	double velocityRight;
 	double velocityLeft;
 
-	bool currentGear;
+
 	//true is low gear and false is second gear(numbers are too hard for me)
 
 
@@ -33,7 +33,9 @@ public:
 	void ChangeGear(bool _gear);
 	void ResetEncoders();
 	float GetPosition();
+	void BrakeTalons();
 	Gyro* gyro;
+	bool currentGear;
 
 
 

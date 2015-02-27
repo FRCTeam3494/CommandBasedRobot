@@ -1,11 +1,11 @@
+#include <Commands/ShiftGear.h>
 #include "OI.h"
 #include "RobotMap.h"
 #include "Commands/Turn.h"
 #include "Commands/Set_Roller.h"
 #include "Commands/Lifting.h"
 #include "Commands/Compressor_Closed_Loop.h"
-#include "Commands/Shift.h"
-#include "Commands/Shift_Down.h"
+#include "Commands/ShiftGear.h"
 #include "Commands/Compressor_Closed_Loop.h"
 #include "Commands/Solenoid_Roller_Set.h"
 #include "Subsystems/DriveTrain.h"
@@ -48,14 +48,13 @@ buttonSelect_2 = new JoystickButton(controller_2, 9);
 
 
 buttonA->WhenPressed(new Solenoid_Roller_Set(true));
-//buttonA->WhenReleased(new Roller_Solenoid_Off());
 buttonY->WhenPressed(new Solenoid_Roller_Set(false));
-buttonB->WhenPressed(new Shift());
-buttonX->WhenPressed(new Shift_Down());
+buttonX->WhenPressed(new Shift(false));
+buttonB->WhenPressed(new Shift(true));
 buttonLB->WhileHeld(new Set_Roller(.5));
 buttonRB->WhileHeld(new Set_Roller(-.5));
 buttonStart->WhenPressed(new ResetEncoders());
-buttonSelect->WhenPressed(new Autonomous_Move(1, 0.2));
+buttonSelect->WhenPressed(new Autonomous_Move(4, 0.25));
 buttonSelect_2->WhenPressed(new Compressor_Closed_Loop());
 
 

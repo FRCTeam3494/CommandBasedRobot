@@ -3,17 +3,34 @@
 
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
+#include "RobotMap.h"
 
 class Lift: public Subsystem {
 private:
 	CANTalon* talonLeft;
 	CANTalon* talonRight;
-	DigitalInput* leftLimitSwitch;
+	AnalogInput* leftIR;
+	AnalogInput* rightIR;
+
+	AnalogInput* LightSensorUp;
+	AnalogInput* LightSensorDown;
+
+
+	double rightVoltage;
+
+	double leftVoltage;
+
+	double leftMeters;
+	double rightMeters;
+
+
 
 public:
 	Lift();
 	void InitDefaultCommand();
-	bool ReachLimit();
+	void CheckIRRight();
+
+	void CheckIRLeft();
 
 
 	//positive: move up
