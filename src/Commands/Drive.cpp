@@ -21,6 +21,7 @@ void Drive::Execute()
 	float leftThrottle = oi->GetLeftJoystick();
 	float rightThrottle = oi->GetRightJoystick();
 
+
 	CommandBase::driveTrain->TankDrive(leftThrottle, rightThrottle); // TODO fix joystick
 	SmartDashboard::PutNumber("Left", leftThrottle);
 	SmartDashboard::PutNumber("Right", rightThrottle);

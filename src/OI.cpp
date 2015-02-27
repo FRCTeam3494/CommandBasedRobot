@@ -49,8 +49,8 @@ buttonA->WhenPressed(new Solenoid_Roller_Set(true));
 buttonY->WhenPressed(new Solenoid_Roller_Set(false));
 buttonB->WhenPressed(new Shift());
 buttonX->WhenPressed(new Shift_Down());
-buttonLB->WhileHeld(new Set_Roller(.5));
-buttonRB->WhileHeld(new Set_Roller(-.5));
+buttonLB->WhileHeld(new Set_Roller(.35));
+buttonRB->WhileHeld(new Set_Roller(-.35));
 buttonSelect_2->WhenPressed(new Compressor_Closed_Loop());
 
 

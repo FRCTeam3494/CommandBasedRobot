@@ -27,7 +27,7 @@ public:
 	void ResetGyro();
 	void ChangeGear(bool _gear);
 	Gyro* gyro;
-
+	double encoder_1;
 
 
 private:
