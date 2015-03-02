@@ -4,7 +4,7 @@
 Solenoid_Roller_Set::Solenoid_Roller_Set(bool FuckMichael)
 {
 	// Use Requires() here to declare subsystem dependencies
-	Requires(CommandBase::solenoids);
+	//Requires(CommandBase::solenoids);
 
 	 BullShit = 0;
 	 Mode = FuckMichael;

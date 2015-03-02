@@ -7,6 +7,8 @@ Drive::Drive()
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis)
 	Requires(CommandBase::driveTrain);
+
+
 }
 
 // Called just before this Command runs the first time
@@ -19,6 +21,8 @@ void Drive::Execute()
 {
 	float leftThrottle = oi->GetLeftJoystick();
 	float rightThrottle = oi->GetRightJoystick();
+
+
 
 	CommandBase::driveTrain->TankDrive(leftThrottle, rightThrottle); // TODO fix joystick
 	SmartDashboard::PutNumber("Left", leftThrottle);

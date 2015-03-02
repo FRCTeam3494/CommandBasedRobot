@@ -29,7 +29,7 @@ void Autonomous_Move::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void Autonomous_Move::Execute() {
-	CommandBase::driveTrain->TankDrive((-speed * .95), speed);
+	CommandBase::driveTrain->TankDrive(-speed, speed);
 }
 
 // Make this return true when this Command no longer needs to run execute()

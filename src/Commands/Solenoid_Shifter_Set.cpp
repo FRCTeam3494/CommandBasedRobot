@@ -3,7 +3,7 @@
 Solenoid_Shifter_Set::Solenoid_Shifter_Set()
 {
 	// Use Requires() here to declare subsystem dependencies
-	Requires(CommandBase::solenoids);
+	//Requires(CommandBase::solenoids);
 }
 
 // Called just before this Command runs the first time

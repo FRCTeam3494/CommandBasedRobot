@@ -21,8 +21,8 @@ Lift::Lift() : Subsystem("Lift")
 	talonRight->Set(0);
 
 	SmartDashboard::init();
-	leftIR=new AnalogInput(LEFT_IR);
-	rightIR=new AnalogInput(RIGHT_IR);
+	//leftIR=new AnalogInput(LEFT_IR);
+	//rightIR=new AnalogInput(RIGHT_IR);
 
 	rightVoltage = 0;
 
@@ -31,8 +31,13 @@ Lift::Lift() : Subsystem("Lift")
 	leftMeters = 0.0;
 	rightMeters = 0.0;
 
-	LightSensorUp = new AnalogInput(SENSOR_UP);
-	LightSensorDown = new AnalogInput(SENSOR_DOWN);
+	//LightSensorUp = new AnalogInput(SENSOR_UP);
+	//LightSensorDown = new AnalogInput(SENSOR_DOWN);
+
+	pusherRight = new Talon(PUSHER_RIGHT);
+	pusherLeft = new Talon(PUSHER_LEFT);
+
+	//limitSwitchDown = new DigitalInput(LIMITSWITCHDOWN);
 
 
 }
@@ -56,6 +61,16 @@ void Lift::move(float magnitude) {
 
 	talonRight->Set(-magnitude);
 	talonLeft->Set(magnitude);
+	//SmartDashboard::PutBoolean("Limit_Switch_Down",limitSwitchDown ->Get());
+}
+
+
+void Lift::MovePusher(float speed)
+{
+	pusherRight->Set(-speed);
+	pusherLeft->Set(-speed);
+
+}
 
 /*float LightSense = LightSensorUp->GetVoltage();
 	SmartDashboard::PutNumber("UP_LIMIT", LightSensorUp->GetVoltage());
@@ -72,7 +87,7 @@ SmartDashboard::PutNumber("UP_LIMIT", LightSense);*/
 
 	//}
 
-}
+
 
 /*void Lift::CheckIRRight()
 {

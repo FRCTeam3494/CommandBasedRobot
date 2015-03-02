@@ -18,7 +18,7 @@ public:
 	void Kompressor_Toggle();
 
 private:
-	bool On;
+	//bool On;
 
 
 };

@@ -7,7 +7,7 @@ OI* CommandBase::oi = NULL;
 Lift* CommandBase::lift = NULL;
 Rollers* CommandBase::roller = NULL;
 Kompressor* CommandBase::kompressor = NULL;
-Solenoids* CommandBase::solenoids = NULL;
+//Solenoids* CommandBase::solenoids = NULL;
 
 CommandBase::CommandBase(char const *name) :
 		Command(name)
@@ -30,5 +30,5 @@ void CommandBase::init()
 	oi = new OI();
 	roller = new Rollers();
 	kompressor = new Kompressor();
-	solenoids = new Solenoids();
+	//solenoids = new Solenoids();
 }

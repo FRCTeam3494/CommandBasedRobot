@@ -8,7 +8,7 @@
 class Set_Roller: public CommandBase
 {
 public:
-	Set_Roller(float _on_roller);
+	Set_Roller();
 	void Initialize();
 	void Execute();
 	bool IsFinished();

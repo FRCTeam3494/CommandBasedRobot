@@ -4,12 +4,14 @@
 #include "Commands/Command.h"
 #include "CommandBase.h"
 #include "Commands/Compressor_Closed_Loop.h"
-
+#include "Commands/Autonomous_Sequence.h"
+#include "Commands/Set_Roller.h"
 class Robot: public IterativeRobot
 {
 private:
 	Command *autonomousCommand;
 	LiveWindow *lw;
+	Command * autonomousSequence;
 
 
 	void RobotInit()
@@ -18,6 +20,7 @@ private:
 //		autonomousCommand = new ExampleCommand();
 		SmartDashboard::init();
 		lw = LiveWindow::GetInstance();
+		autonomousSequence = new Autonomous_Sequence();
 
 
 	}
@@ -31,6 +34,8 @@ private:
 	{
 		if (autonomousCommand != NULL)
 			autonomousCommand->Start();
+		if(autonomousSequence != NULL)
+			autonomousSequence->Start();
 	}
 
 	void AutonomousPeriodic()
@@ -40,12 +45,17 @@ private:
 
 	void TeleopInit()
 	{
+
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to 
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
 		if (autonomousCommand != NULL)
 			autonomousCommand->Cancel();
+
+		if(autonomousSequence != NULL)
+	autonomousSequence->Cancel();
+
 
 
 
@@ -56,6 +66,7 @@ private:
 	void TeleopPeriodic()
 	{
 		Scheduler::GetInstance()->Run();
+
 
 	}
 

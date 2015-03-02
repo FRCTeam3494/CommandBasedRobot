@@ -19,6 +19,8 @@ private:
 	DoubleSolenoid* solenoid_Shifter;
 	double velocityRight;
 	double velocityLeft;
+	bool cutPower;
+
 
 
 	//true is low gear and false is second gear(numbers are too hard for me)
@@ -34,8 +36,11 @@ public:
 	void ResetEncoders();
 	float GetPosition();
 	void BrakeTalons();
+	void HalfPower();
 	Gyro* gyro;
 	bool currentGear;
+
+
 
 
 

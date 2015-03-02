@@ -11,8 +11,10 @@
 #include "Subsystems/DriveTrain.h"
 #include "Commands/ResetEncoders.h"
 #include "Commands/Autonomous_Move.h"
+#include "Commands/Move_Pushers.h"
 
 #include "Commands/Print.h"
+#include "Commands/Cut_Power.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -46,17 +48,21 @@ buttonStart_2 = new JoystickButton(controller_2, 8);
 buttonSelect_2 = new JoystickButton(controller_2, 9);
 
 
-
 buttonA->WhenPressed(new Solenoid_Roller_Set(true));
 buttonY->WhenPressed(new Solenoid_Roller_Set(false));
 buttonX->WhenPressed(new Shift(false));
 buttonB->WhenPressed(new Shift(true));
-buttonLB->WhileHeld(new Set_Roller(.5));
-buttonRB->WhileHeld(new Set_Roller(-.5));
-buttonStart->WhenPressed(new ResetEncoders());
-buttonSelect->WhenPressed(new Autonomous_Move(4, 0.25));
+//buttonLB->WhileHeld(new Set_Roller(.5));
+//buttonRB->WhileHeld(new Set_Roller(-.5));
+//buttonRB->WhenReleased(new Set_Roller(0));
+//buttonLB->WhenReleased(new Set_Roller(0));
+buttonSelect->WhenPressed(new Cut_Power());
+buttonStart_2->WhenPressed(new ResetEncoders());
+//buttonSelect->WhenPressed(new Autonomous_Move(4, 0.25));
 buttonSelect_2->WhenPressed(new Compressor_Closed_Loop());
 
+buttonRB_2->WhileHeld(new Move_Pushers(0.2));
+buttonLB_2->WhileHeld(new Move_Pushers(-0.2));
 
 
 }
@@ -70,16 +76,20 @@ float OI::GetRightJoystick() {
 }
 
 float OI::GetLeftTrigger() {
-	return controller->GetRawAxis(2);
+	return controller_2->GetRawAxis(2);
 }
 
 float OI::GetRightTrigger(){
-	return controller->GetRawAxis(3);
+	return controller_2->GetRawAxis(3);
 }
 
+float OI::GetLeftBumper(){
+	return controller->GetRawButton(5);
+}
 
-
-
+float OI::GetRightBumper(){
+	return controller->GetRawButton(6);
+}
 
 
 

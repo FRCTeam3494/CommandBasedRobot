@@ -17,6 +17,7 @@ public:
 
 private:
 	//DriveTrain* driveTrain;
+	//bool power;
 };
 
 #endif

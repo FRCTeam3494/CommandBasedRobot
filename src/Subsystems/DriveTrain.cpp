@@ -16,7 +16,7 @@ DriveTrain::DriveTrain() :
 	talonRightFollowerA = new CANTalon(RIGHT_MOTOR_FOLLOWER_A);
 	talonRightFollowerB = new CANTalon(RIGHT_MOTOR_FOLLOWER_B);
 
-	// Talon 2 follow 1
+	/*// Talon 2 follow 1
 	talonRightFollowerA->SetControlMode(CANSpeedController::kFollower);
 	talonRightFollowerA->Set(RIGHT_MOTOR_MASTER);
 
@@ -29,21 +29,32 @@ DriveTrain::DriveTrain() :
 
 	talonLeftFollowerB->SetControlMode(CANSpeedController::kFollower);
 	talonLeftFollowerB->Set(LEFT_MOTOR_MASTER);
+	*/
 
 	talonLeftMaster->EnableControl();
 	talonRightMaster->EnableControl();
 
+	talonRightFollowerA->EnableControl();
+	talonRightFollowerB->EnableControl();
+
+	talonLeftFollowerA->EnableControl();
+	talonLeftFollowerB->EnableControl();
+
 	talonLeftMaster->SetSafetyEnabled(false);
+	talonLeftFollowerA->SetSafetyEnabled(false);
+	talonLeftFollowerB->SetSafetyEnabled(false);
 	talonLeftMaster->SetExpiration(0.100);
 	talonLeftMaster->Set(0);
 
 	talonRightMaster->SetSafetyEnabled(false);
+	talonRightFollowerA->SetSafetyEnabled(false);
+	talonRightFollowerB->SetSafetyEnabled(false);
 	talonRightMaster->SetExpiration(0.100);
 	talonRightMaster->Set(0);
 
-	gyro = new Gyro(0);
+	gyro = new Gyro(1);
 
-	solenoid_Shifter = new DoubleSolenoid(6, 7);
+	solenoid_Shifter = new DoubleSolenoid(0, 1);
 
 	//false equals low gear
 	currentGear = false;
@@ -51,6 +62,8 @@ DriveTrain::DriveTrain() :
 	position = 0.0;
 	velocityLeft = 0.0;
 	velocityRight = 0.0;
+
+	cutPower = false;
 
 }
 
@@ -63,7 +76,8 @@ void DriveTrain::ResetGyro() {
 }
 
 float DriveTrain::GetPosition() {
-	return ((talonRightMaster->GetEncPosition()-talonLeftMaster->GetEncPosition())/2);
+	return ((talonRightMaster->GetEncPosition()- talonLeftMaster->GetEncPosition())/2);
+
 }
 
 void DriveTrain::ResetEncoders() {
@@ -97,7 +111,12 @@ void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 	 }
 
 	 */
+	if(cutPower == true)
+	{
+		leftAxis /= 2;
+		rightAxis /=2;
 
+	}
 	velocityRight = talonRightMaster->GetEncVel();
 	velocityLeft = talonLeftMaster->GetEncVel();
 
@@ -105,9 +124,33 @@ void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 	SmartDashboard::PutNumber("encoder_Right_Velocity", velocityRight);
 	SmartDashboard::PutNumber("Position", GetPosition());
 
-	talonRightMaster->Set(rightAxis);
+	/*talonRightMaster->Set(rightAxis);
 	talonLeftMaster->Set(leftAxis);
 
+	talonRightFollowerA->Set(rightAxis);
+	talonRightFollowerB->Set(rightAxis);
+
+	talonLeftFollowerA->Set(leftAxis);
+	talonLeftFollowerB->Set(leftAxis);*/
+
+
+	 //Deadband for left!!!!!!
+
+
+		talonLeftMaster->Set(leftAxis);
+		 talonLeftFollowerA->Set(leftAxis);
+		 talonLeftFollowerB->Set(leftAxis);
+
+
+		 //deadband for Right!!!!!!!!!!!!!!!!!!!
+
+		 talonRightMaster->Set(rightAxis);
+			talonRightFollowerA->Set(rightAxis);
+			talonRightFollowerB->Set(rightAxis);
+
+
+
+SmartDashboard::PutNumber("AAAAAA_GYRO ANGLE",gyro->GetAngle());
 }
 
 void DriveTrain::ChangeGear(bool _gear) {
@@ -124,4 +167,22 @@ void DriveTrain::ChangeGear(bool _gear) {
 	}
 
 }
+
+void DriveTrain::HalfPower()
+{
+	if(cutPower == false)
+	{
+		cutPower = true;
+	}
+	else if(cutPower == true)
+	{
+
+		cutPower = false;
+	}
+
+}
+
+
+
+
 

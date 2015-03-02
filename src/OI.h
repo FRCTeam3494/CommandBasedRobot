@@ -14,6 +14,8 @@ public:
 	float GetRightJoystick();
 	float GetLeftTrigger();
 	float GetRightTrigger();
+	float GetLeftBumper();
+	float GetRightBumper();
 
 
 	JoystickButton* buttonA;

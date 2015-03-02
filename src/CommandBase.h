@@ -8,7 +8,7 @@
 #include "Subsystems/Lift.h"
 #include "Subsystems/Rollers.h"
 #include "Subsystems/Kompressor.h"
-#include "Subsystems/Solenoids.h"
+//#include "Subsystems/Solenoids.h"
 #include "OI.h"
 #include "WPILib.h"
 
@@ -31,7 +31,7 @@ public:
 	static Lift* lift;
 	static Rollers* roller;
 	static Kompressor* kompressor;
-	static Solenoids* solenoids;
+	//static Solenoids* solenoids;
 };
 
 #endif

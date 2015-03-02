@@ -38,15 +38,15 @@ const int RIGHT_LIFT = 4;
 const int FIRST_CONTROLLER = 0;
 const int SECOND_CONTROLLER = 1;
 
-const int LEFT_ROLLER = 4;
-const int RIGHT_ROLLER = 1;
+const int LEFT_ROLLER = 2;
+const int RIGHT_ROLLER = 0;
 
 const int COMPRESSOR = 0;
 
-const int SOL_ROLLER_1 = 0;
-const int SOL_ROLLER_2 = 1;
-const int SOL_SHIFT_1 = 3;
-const int SOL_SHIFT_2 = 4;
+const int SOL_ROLLER_1 = 2;
+const int SOL_ROLLER_2 = 3;
+const int SOL_SHIFT_1 = 0;
+const int SOL_SHIFT_2 = 1;
 const int SOL_PUSH = 5;
 
 const int LEFT_LIFT_LIMIT = 0;
@@ -58,4 +58,10 @@ const int RIGHT_IR = 0;
 
 const int SENSOR_UP = 0;
 const int SENSOR_DOWN = 1;
+
+const int PUSHER_LEFT = 3;
+const int PUSHER_RIGHT = 4;
+
+const int LIMITSWITCHDOWN = 0;
+const int LIMITSWITCHUP = 1;
 #endif

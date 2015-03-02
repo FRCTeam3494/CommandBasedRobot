@@ -1,3 +1,4 @@
+#include <Math.h>
 #include "Turn.h"
 
 
@@ -17,6 +18,8 @@ Turn::Turn(float _angle, float _speed)
 // Called just before this Command runs the first time
 void Turn::Initialize()
 {
+	CommandBase::driveTrain->ResetGyro();
+	slow = false;
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -28,17 +31,18 @@ void Turn::Execute()
 		CommandBase::driveTrain->TankDrive(speed, speed);
 	}
 	 // TODO fix joystick
-	SmartDashboard::PutNumber("Delta Theta", angle - CommandBase::driveTrain->GetAngle());
+	SmartDashboard::PutNumber("Delta Theta", angle + CommandBase::driveTrain->GetAngle());
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool Turn::IsFinished()
 {
-	float diff = abs(angle-CommandBase::driveTrain->GetAngle());
+	float diff= abs(angle+CommandBase::driveTrain->GetAngle());
 	//1 degree accuracy
-	if (diff <= 20 && !slow){
+	if (diff <= 45 && !slow){
 		slow = true;
-	} else if (diff <=2){
+	} else if (diff <= 10){
+		CommandBase::driveTrain->ResetGyro();
 		return true;
 	}
 	return false;

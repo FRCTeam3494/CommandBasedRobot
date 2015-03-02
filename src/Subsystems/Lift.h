@@ -9,11 +9,16 @@ class Lift: public Subsystem {
 private:
 	CANTalon* talonLeft;
 	CANTalon* talonRight;
-	AnalogInput* leftIR;
-	AnalogInput* rightIR;
+	//AnalogInput* leftIR;
+	//AnalogInput* rightIR;
+	Talon* pusherRight;
+	Talon* pusherLeft;
 
-	AnalogInput* LightSensorUp;
-	AnalogInput* LightSensorDown;
+
+	//AnalogInput* LightSensorUp;
+	//AnalogInput* LightSensorDown;
+
+	//DigitalInput* limitSwitchDown;
 
 
 	double rightVoltage;
@@ -28,9 +33,8 @@ private:
 public:
 	Lift();
 	void InitDefaultCommand();
-	void CheckIRRight();
 
-	void CheckIRLeft();
+	void MovePusher(float speed);
 
 
 	//positive: move up
