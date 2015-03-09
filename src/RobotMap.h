@@ -22,7 +22,7 @@
 
 const int LEFT_MOTOR_MASTER = 5;  //1, 2, 3 are right MCs
 const int LEFT_MOTOR_FOLLOWER_A = 6;
-const int LEFT_MOTOR_FOLLOWER_B = 7;
+const int Strafe_ = 7;
 const int RIGHT_MOTOR_MASTER = 1;
 const int RIGHT_MOTOR_FOLLOWER_A = 2;
 const int RIGHT_MOTOR_FOLLOWER_B = 3;
@@ -43,8 +43,8 @@ const int RIGHT_ROLLER = 0;
 
 const int COMPRESSOR = 0;
 
-const int SOL_ROLLER_1 = 2;
-const int SOL_ROLLER_2 = 3;
+const int SOL_ROLLER_1 = 5;
+const int SOL_ROLLER_2 = 4;
 const int SOL_SHIFT_1 = 0;
 const int SOL_SHIFT_2 = 1;
 const int SOL_PUSH = 5;
@@ -59,8 +59,8 @@ const int RIGHT_IR = 0;
 const int SENSOR_UP = 0;
 const int SENSOR_DOWN = 1;
 
-const int PUSHER_LEFT = 3;
-const int PUSHER_RIGHT = 4;
+//const int PUSHER_LEFT = 3;
+//const int PUSHER_RIGHT = 4;
 
 const int LIMITSWITCHDOWN = 0;
 const int LIMITSWITCHUP = 1;

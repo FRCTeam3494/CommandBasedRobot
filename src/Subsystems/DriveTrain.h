@@ -4,6 +4,7 @@
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 
+
 class DriveTrain: public Subsystem
 {
 private:
@@ -11,10 +12,10 @@ private:
 	// for methods that implement subsystem capabilities
 	CANTalon* talonLeftMaster;
 	CANTalon* talonLeftFollowerA;
-	CANTalon* talonLeftFollowerB;
+	CANTalon* talon_strafe;
 	CANTalon* talonRightMaster;
 	CANTalon* talonRightFollowerA;
-	CANTalon* talonRightFollowerB;
+	//CANTalon* talonRightFollowerB;
 	double position;
 	DoubleSolenoid* solenoid_Shifter;
 	double velocityRight;
@@ -37,6 +38,7 @@ public:
 	float GetPosition();
 	void BrakeTalons();
 	void HalfPower();
+	void _Strafe(float strafe_axis);
 	Gyro* gyro;
 	bool currentGear;
 
@@ -48,7 +50,7 @@ public:
 
 #endif
 
-/*#ifndef DriveTrain_H
+/*#ifndef DriveTrain_
 #define DriveTrain_H
 
 #include "Commands/Subsystem.h"

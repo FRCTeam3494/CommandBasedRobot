@@ -4,7 +4,7 @@
 #include "Commands/Command.h"
 #include "CommandBase.h"
 #include "Commands/Compressor_Closed_Loop.h"
-#include "Commands/Autonomous_Sequence.h"
+#include "Commands/Autonomous/Autonomous_Sequence.h"
 #include "Commands/Set_Roller.h"
 class Robot: public IterativeRobot
 {

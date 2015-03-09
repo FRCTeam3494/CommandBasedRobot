@@ -1,7 +1,9 @@
 #include "DriveTrain.h"
 #include "../RobotMap.h"
-#include "../Commands/Drive.h"
-#include "../Commands/DriveBase_Command_Group.h"
+#include "../Commands/Drive/Drive.h"
+#include "../Commands/Drive/DriveBase_Command_Group.h"
+#include <math.h>
+
 
 //0.478779 meters per revolution
 //20166 encoder units per meter
@@ -10,11 +12,11 @@
 DriveTrain::DriveTrain() :
 		Subsystem("DriveTrain") {
 	talonLeftMaster = new CANTalon(LEFT_MOTOR_MASTER);
+	talon_strafe = new CANTalon(Strafe_);
 	talonLeftFollowerA = new CANTalon(LEFT_MOTOR_FOLLOWER_A);
-	talonLeftFollowerB = new CANTalon(LEFT_MOTOR_FOLLOWER_B);
 	talonRightMaster = new CANTalon(RIGHT_MOTOR_MASTER);
 	talonRightFollowerA = new CANTalon(RIGHT_MOTOR_FOLLOWER_A);
-	talonRightFollowerB = new CANTalon(RIGHT_MOTOR_FOLLOWER_B);
+	//talonRightFollowerB = new CANTalon(RIGHT_MOTOR_FOLLOWER_B);
 
 	/*// Talon 2 follow 1
 	talonRightFollowerA->SetControlMode(CANSpeedController::kFollower);
@@ -35,20 +37,20 @@ DriveTrain::DriveTrain() :
 	talonRightMaster->EnableControl();
 
 	talonRightFollowerA->EnableControl();
-	talonRightFollowerB->EnableControl();
+	//talonRightFollowerB->EnableControl();
 
 	talonLeftFollowerA->EnableControl();
-	talonLeftFollowerB->EnableControl();
+	talon_strafe->EnableControl();
 
 	talonLeftMaster->SetSafetyEnabled(false);
 	talonLeftFollowerA->SetSafetyEnabled(false);
-	talonLeftFollowerB->SetSafetyEnabled(false);
+	talon_strafe->SetSafetyEnabled(false);
 	talonLeftMaster->SetExpiration(0.100);
 	talonLeftMaster->Set(0);
 
 	talonRightMaster->SetSafetyEnabled(false);
 	talonRightFollowerA->SetSafetyEnabled(false);
-	talonRightFollowerB->SetSafetyEnabled(false);
+	//talonRightFollowerB->SetSafetyEnabled(false);
 	talonRightMaster->SetExpiration(0.100);
 	talonRightMaster->Set(0);
 
@@ -88,6 +90,7 @@ void DriveTrain::ResetEncoders() {
 void DriveTrain::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	SetDefaultCommand(new Drive());
+
 
 }
 
@@ -136,18 +139,35 @@ void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 
 	 //Deadband for left!!!!!!
 
+	int power = 6;
 
-		talonLeftMaster->Set(leftAxis);
-		 talonLeftFollowerA->Set(leftAxis);
-		 talonLeftFollowerB->Set(leftAxis);
+	float leftValue, rightValue = 0;
+	if (leftAxis > 0){
+		leftValue = pow(leftAxis,power);
+	} else if (leftAxis<0){
+		leftValue = -pow(leftAxis,power);
+	}
+
+	if (rightAxis > 0){
+		rightValue = pow(rightAxis,power);
+	} else if (rightAxis<0){
+		rightValue = -pow(rightAxis,power);
+	}
+
+
+
+		talonLeftMaster->Set(leftValue);
+		 talonLeftFollowerA->Set(leftValue);
+		// talon_strafe->Set(leftAxis);
 
 
 		 //deadband for Right!!!!!!!!!!!!!!!!!!!
 
-		 talonRightMaster->Set(rightAxis);
-			talonRightFollowerA->Set(rightAxis);
-			talonRightFollowerB->Set(rightAxis);
+		 talonRightMaster->Set(rightValue);
+			talonRightFollowerA->Set(rightValue);
+			//talonRightFollowerB->Set(rightAxis);
 
+		SmartDashboard::PutNumber("LEFT", leftValue);
 
 
 SmartDashboard::PutNumber("AAAAAA_GYRO ANGLE",gyro->GetAngle());
@@ -165,6 +185,14 @@ void DriveTrain::ChangeGear(bool _gear) {
 		}
 		currentGear = _gear;
 	}
+
+}
+
+void DriveTrain::_Strafe(float strafe_axis)
+{
+
+	talon_strafe->Set(strafe_axis);
+
 
 }
 

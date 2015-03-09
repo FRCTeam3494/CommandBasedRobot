@@ -34,9 +34,6 @@ Lift::Lift() : Subsystem("Lift")
 	//LightSensorUp = new AnalogInput(SENSOR_UP);
 	//LightSensorDown = new AnalogInput(SENSOR_DOWN);
 
-	pusherRight = new Talon(PUSHER_RIGHT);
-	pusherLeft = new Talon(PUSHER_LEFT);
-
 	//limitSwitchDown = new DigitalInput(LIMITSWITCHDOWN);
 
 

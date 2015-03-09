@@ -14,7 +14,7 @@ Rollers::Rollers() :
 	talonright->SetExpiration(0.100);
 	talonright->Set(0);
 
-	solenoid = new DoubleSolenoid(2, 3);
+	solenoid = new DoubleSolenoid(SOL_ROLLER_1,SOL_ROLLER_2 );
 }
 
 void Rollers::InitDefaultCommand() {

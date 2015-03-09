@@ -1,21 +1,28 @@
-#include <Commands/ShiftGear.h>
+
 #include "OI.h"
 #include "RobotMap.h"
-#include "Commands/Turn.h"
+
 #include "Commands/Set_Roller.h"
 #include "Commands/Lifting.h"
 #include "Commands/Compressor_Closed_Loop.h"
-#include "Commands/ShiftGear.h"
+
 #include "Commands/Compressor_Closed_Loop.h"
 #include "Commands/Solenoid_Roller_Set.h"
-#include "Subsystems/DriveTrain.h"
+
 #include "Commands/ResetEncoders.h"
-#include "Commands/Autonomous_Move.h"
-#include "Commands/Move_Pushers.h"
+#include "Commands/Autonomous/Autonomous_Move.h"
+
 
 #include "Commands/Print.h"
-#include "Commands/Cut_Power.h"
+#include "Commands/Drive/Cut_Power.h"
+//Drive/ Folder
 
+#include "Commands/Drive/Turn.h"
+#include <Commands/Drive/ShiftGear.h>
+#include "Commands/Drive/ShiftGear.h"
+#include "Subsystems/DriveTrain.h"
+
+//
 OI::OI() {
 	// Process operator interface input here.
 	controller = new Joystick(FIRST_CONTROLLER);
@@ -61,8 +68,6 @@ buttonStart_2->WhenPressed(new ResetEncoders());
 //buttonSelect->WhenPressed(new Autonomous_Move(4, 0.25));
 buttonSelect_2->WhenPressed(new Compressor_Closed_Loop());
 
-buttonRB_2->WhileHeld(new Move_Pushers(0.2));
-buttonLB_2->WhileHeld(new Move_Pushers(-0.2));
 
 
 }
@@ -75,11 +80,19 @@ float OI::GetRightJoystick() {
 	return -1 * controller->GetRawAxis(5);
 }
 
+
 float OI::GetLeftTrigger() {
-	return controller_2->GetRawAxis(2);
+	return controller->GetRawAxis(2);
 }
 
 float OI::GetRightTrigger(){
+	return controller->GetRawAxis(3);
+}
+float OI::GetLeftTrigger_2() {
+	return controller_2->GetRawAxis(2);
+}
+
+float OI::GetRightTrigger_2(){
 	return controller_2->GetRawAxis(3);
 }
 

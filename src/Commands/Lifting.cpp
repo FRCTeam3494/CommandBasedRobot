@@ -20,21 +20,21 @@ void Lifting::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void Lifting::Execute()
 {
-	SmartDashboard::PutNumber("lEFTtROGGER", oi->GetLeftTrigger());
-	SmartDashboard::PutNumber("rIGHT_tRIGGER", oi->GetRightTrigger());
+	SmartDashboard::PutNumber("lEFTtROGGER", oi->GetLeftTrigger_2());
+	SmartDashboard::PutNumber("rIGHT_tRIGGER", oi->GetRightTrigger_2());
 /*if ( oi->GetRightTrigger() < .20 && oi->GetLeftTrigger() <.20 )
 {
 	magnitude_lift = 0;
 
 }*/
 
-if(oi->GetRightTrigger() > .25)
+if(oi->GetRightTrigger_2() > .25)
 {
-magnitude_lift = oi->GetRightTrigger()/2;
+magnitude_lift = oi->GetRightTrigger_2()/1.5;
 }
-else if (oi->GetLeftTrigger() > .25)
+else if (oi->GetLeftTrigger_2() > .25)
 {
-magnitude_lift = -oi->GetLeftTrigger()/2;
+magnitude_lift = -oi->GetLeftTrigger_2()/1.5;
 }
 else
 {
