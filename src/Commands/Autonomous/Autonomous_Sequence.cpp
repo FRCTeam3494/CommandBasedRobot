@@ -3,7 +3,7 @@
 #include "Commands/Autonomous/Autonomous_Move.h"
 #include "Commands/Drive/ShiftGear.h"
 #include "Commands/Idiot_Lift.h"
-#include "Commands/Drive/Turn.h"
+#include "Commands/Autonomous/Turn.h"
 #include "Commands/Solenoid_Roller_Set.h"
 
 Autonomous_Sequence::Autonomous_Sequence()
@@ -17,13 +17,14 @@ Autonomous_Sequence::Autonomous_Sequence()
 
 	AddSequential(new Idiot_Lift(1));
 	AddParallel(new Solenoid_Roller_Set(true));
+	AddSequential(new ShiftGear(false));
 	//start rollers
 	//move forward
 	//AddSequential(new Autonimous_Roller(3));
 	AddSequential(new Autonomous_Move(1,0.4));
 	AddSequential(new Turn(90,0.5));
 	AddSequential(new Autonomous_Move(2.85, .85));
-	AddSequential(new Shift(false));
+
 
 	// To run multiple commands at the same time,
 	// use AddParallel()

@@ -1,13 +1,13 @@
-#ifndef Shift_H
-#define Shift_H
+#ifndef ShiftGear_H
+#define ShiftGear_H
 
 #include "../../CommandBase.h"
 #include "WPILib.h"
 
-class Shift: public CommandBase
+class ShiftGear: public CommandBase
 {
 public:
-	Shift(bool _mode);
+	ShiftGear(bool _mode);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

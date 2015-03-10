@@ -17,8 +17,7 @@
 #include "Commands/Drive/Cut_Power.h"
 //Drive/ Folder
 
-#include "Commands/Drive/Turn.h"
-#include <Commands/Drive/ShiftGear.h>
+#include "Commands/Autonomous/Turn.h"
 #include "Commands/Drive/ShiftGear.h"
 #include "Subsystems/DriveTrain.h"
 
@@ -54,18 +53,21 @@ buttonRB_2 = new JoystickButton(controller_2, 6);
 buttonStart_2 = new JoystickButton(controller_2, 8);
 buttonSelect_2 = new JoystickButton(controller_2, 9);
 
+//open
+buttonA->WhenPressed(new Solenoid_Roller_Set(false));
 
-buttonA->WhenPressed(new Solenoid_Roller_Set(true));
-buttonY->WhenPressed(new Solenoid_Roller_Set(false));
-buttonX->WhenPressed(new Shift(false));
-buttonB->WhenPressed(new Shift(true));
-//buttonLB->WhileHeld(new Set_Roller(.5));
-//buttonRB->WhileHeld(new Set_Roller(-.5));
-//buttonRB->WhenReleased(new Set_Roller(0));
-//buttonLB->WhenReleased(new Set_Roller(0));
+//close
+buttonY->WhenPressed(new Solenoid_Roller_Set(true));
+
+//gear down
+buttonX->WhenPressed(new ShiftGear(true));
+
+//gear up
+buttonB->WhenPressed(new ShiftGear(false));
+
+
 buttonSelect->WhenPressed(new Cut_Power());
 buttonStart_2->WhenPressed(new ResetEncoders());
-//buttonSelect->WhenPressed(new Autonomous_Move(4, 0.25));
 buttonSelect_2->WhenPressed(new Compressor_Closed_Loop());
 
 

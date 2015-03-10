@@ -56,7 +56,7 @@ DriveTrain::DriveTrain() :
 
 	gyro = new Gyro(1);
 
-	solenoid_Shifter = new DoubleSolenoid(0, 1);
+	solenoid_Shifter = new DoubleSolenoid(SOL_SHIFT_1, SOL_SHIFT_2);
 
 	//false equals low gear
 	currentGear = false;
@@ -139,20 +139,23 @@ void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 
 	 //Deadband for left!!!!!!
 
-	int power = 6;
+	float power = 2;
 
-	float leftValue, rightValue = 0;
-	if (leftAxis > 0){
-		leftValue = pow(leftAxis,power);
-	} else if (leftAxis<0){
-		leftValue = -pow(leftAxis,power);
+	int leftSign = 1;
+	int rightSign = 1;
+
+	if(leftAxis <0){
+		leftSign = -1;
+		leftAxis = leftAxis*-1;
 	}
 
-	if (rightAxis > 0){
-		rightValue = pow(rightAxis,power);
-	} else if (rightAxis<0){
-		rightValue = -pow(rightAxis,power);
+	if (rightAxis <0){
+		rightSign = -1;
+		rightAxis = rightAxis*-1;
 	}
+
+	float leftValue = leftSign * pow(leftAxis, power);
+	float rightValue = rightSign * pow(rightAxis, power);
 
 
 
