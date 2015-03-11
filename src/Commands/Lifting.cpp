@@ -30,11 +30,11 @@ void Lifting::Execute()
 
 if(oi->GetRightTrigger_2() > .25)
 {
-magnitude_lift = oi->GetRightTrigger_2()/1.5;
+magnitude_lift = oi->GetRightTrigger_2();
 }
 else if (oi->GetLeftTrigger_2() > .25)
 {
-magnitude_lift = -oi->GetLeftTrigger_2()/1.5;
+magnitude_lift = -oi->GetLeftTrigger_2();
 }
 else
 {

@@ -2,9 +2,9 @@
 #include "Subsystems/DriveTrain.h"
 #include "Commands/Autonomous/Autonomous_Move.h"
 #include "Commands/Drive/ShiftGear.h"
-#include "Commands/Idiot_Lift.h"
+#include "Idiot_Lift.h"
 #include "Commands/Autonomous/Turn.h"
-#include "Commands/Solenoid_Roller_Set.h"
+#include "Commands/Rollers/Solenoid_Roller_Set.h"
 
 Autonomous_Sequence::Autonomous_Sequence()
 {

@@ -56,11 +56,21 @@ void Lift::move(float magnitude) {
 	//if(talonRight->GetAnalogInRaw() || talonLeft->GetBusVoltage() > 0)
 	//{
 
+	//if fast
+	if (mode){
+		magnitude = magnitude * 0.95;
+	} else {
+		magnitude = magnitude/1.5;
+	}
+
 	talonRight->Set(-magnitude);
 	talonLeft->Set(magnitude);
 	//SmartDashboard::PutBoolean("Limit_Switch_Down",limitSwitchDown ->Get());
 }
 
+void Lift::ChangeMode(bool fast){
+	mode = fast;
+}
 
 void Lift::MovePusher(float speed)
 {
@@ -68,45 +78,3 @@ void Lift::MovePusher(float speed)
 	pusherLeft->Set(-speed);
 
 }
-
-/*float LightSense = LightSensorUp->GetVoltage();
-	SmartDashboard::PutNumber("UP_LIMIT", LightSensorUp->GetVoltage());
-	SmartDashboard::PutNumber("DOWN_LIMIT", LightSensorDown->GetValue());
-SmartDashboard::PutNumber("UP_LIMIT", LightSense);*/
-
-
-
-	//}
-	//else
-	//{
-
-		//SmartDashboard::PutString("THE TALON IS NOT WORKING","need to reset");
-
-	//}
-
-
-
-/*void Lift::CheckIRRight()
-{
-		rightVoltage = rightIR->GetVoltage();
-
-		rightMeters = -0.175*pow(1/rightVoltage,2) + 1.0077*(1/rightVoltage)-0.2073;
-
-
-		SmartDashboard::PutNumber("Right_Voltage", rightVoltage);
-		SmartDashboard::PutNumber("Right_Meters", rightMeters);
-}
-
-void Lift::CheckIRLeft()
-{
-
-
-	leftVoltage = leftIR->GetVoltage();
-
-	leftMeters = -0.1685*pow(1/leftVoltage,2) + 0.9092*(1/leftVoltage) - 0.1714;
-
-		SmartDashboard::PutNumber("Left_Voltage", leftVoltage);
-		SmartDashboard::PutNumber("Left_Meters", leftMeters);
-
-}*/
-

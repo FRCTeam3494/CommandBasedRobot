@@ -2,12 +2,12 @@
 #include "OI.h"
 #include "RobotMap.h"
 
-#include "Commands/Set_Roller.h"
+#include "Commands/Rollers/Set_Roller.h"
 #include "Commands/Lifting.h"
 #include "Commands/Compressor_Closed_Loop.h"
 
 #include "Commands/Compressor_Closed_Loop.h"
-#include "Commands/Solenoid_Roller_Set.h"
+#include "Commands/Rollers/Solenoid_Roller_Set.h"
 
 #include "Commands/ResetEncoders.h"
 #include "Commands/Autonomous/Autonomous_Move.h"
@@ -20,6 +20,7 @@
 #include "Commands/Autonomous/Turn.h"
 #include "Commands/Drive/ShiftGear.h"
 #include "Subsystems/DriveTrain.h"
+#include "Commands/ChangeSpeed.h"
 
 //
 OI::OI() {
@@ -70,9 +71,11 @@ buttonSelect->WhenPressed(new Cut_Power());
 buttonStart_2->WhenPressed(new ResetEncoders());
 buttonSelect_2->WhenPressed(new Compressor_Closed_Loop());
 
-
+buttonY_2->WhenPressed(new ChangeSpeed(true));
+buttonA_2->WhenPressed(new ChangeSpeed(false));
 
 }
+
 
 float OI::GetLeftJoystick() {
 	return 1 * controller->GetRawAxis(1);

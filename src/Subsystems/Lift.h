@@ -27,8 +27,7 @@ private:
 
 	double leftMeters;
 	double rightMeters;
-
-
+	bool mode;
 
 public:
 	Lift();
@@ -36,7 +35,7 @@ public:
 
 	void MovePusher(float speed);
 
-
+	void ChangeMode(bool fast);
 	//positive: move up
 	//negative: move down
 	void move(float magnitude);
