@@ -20,6 +20,8 @@ Lift::Lift() : Subsystem("Lift")
 	talonRight->SetExpiration(0.100);
 	talonRight->Set(0);
 
+	Clip = new Solenoid(CLIPSOL);
+
 	SmartDashboard::init();
 	//leftIR=new AnalogInput(LEFT_IR);
 	//rightIR=new AnalogInput(RIGHT_IR);
@@ -77,4 +79,15 @@ void Lift::MovePusher(float speed)
 	pusherRight->Set(-speed);
 	pusherLeft->Set(-speed);
 
+}
+
+void Lift::L_Sol_Set() {
+
+	Clip->Set(true);
+
+}
+// Put methods for controlling this subsystem
+// here. Call these from Commands.
+void Lift::L_Sol_Off() {
+	Clip->Set(false);
 }

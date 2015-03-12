@@ -21,6 +21,7 @@
 #include "Commands/Drive/ShiftGear.h"
 #include "Subsystems/DriveTrain.h"
 #include "Commands/ChangeSpeed.h"
+#include "Commands/Clipperset.h"
 
 //
 OI::OI() {
@@ -74,6 +75,8 @@ buttonSelect_2->WhenPressed(new Compressor_Closed_Loop());
 buttonY_2->WhenPressed(new ChangeSpeed(true));
 buttonA_2->WhenPressed(new ChangeSpeed(false));
 
+buttonX_2->WhenPressed(new Clipperset(true));
+buttonB_2->WhenPressed(new Clipperset(false));
 }
 
 

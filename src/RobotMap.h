@@ -43,6 +43,8 @@ const int RIGHT_ROLLER = 0;
 
 const int COMPRESSOR = 0;
 
+const int CLIPSOL = 7;
+
 const int SOL_ROLLER_1 = 0;
 const int SOL_ROLLER_2 = 1;
 const int SOL_SHIFT_1 = 5;

@@ -29,6 +29,8 @@ private:
 	double rightMeters;
 	bool mode;
 
+	Solenoid* Clip;
+
 public:
 	Lift();
 	void InitDefaultCommand();
@@ -39,6 +41,8 @@ public:
 	//positive: move up
 	//negative: move down
 	void move(float magnitude);
+	void L_Sol_Set();
+	void L_Sol_Off();
 };
 
 #endif

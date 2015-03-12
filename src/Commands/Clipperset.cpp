@@ -19,11 +19,12 @@ void Clipperset::Execute()
 
 	if(Clip)
 	{
-		CommandBase::lift->TriggerSolenoid();
+		CommandBase::lift->L_Sol_Set();
+
 	}
 	else
 	{
-		CommandBase::lift->SolenoidOff();
+		CommandBase::lift->L_Sol_Off();
 	}
 
 }
