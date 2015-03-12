@@ -82,11 +82,11 @@ DriveTrain::DriveTrain() :
 }
 
 float DriveTrain::GetAngle() {
-	return gyro->GetAngle();
+	return imu->GetYaw();
 }
 
 void DriveTrain::ResetGyro() {
-	gyro->Reset();
+	imu->ZeroYaw();
 }
 
 float DriveTrain::GetPosition() {

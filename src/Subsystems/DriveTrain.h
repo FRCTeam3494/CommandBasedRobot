@@ -46,7 +46,6 @@ private:
     IMU *imu;
 #endif
     SerialPort *serial_port;
-    bool first_iteration;
 
 
 
@@ -66,7 +65,6 @@ public:
 	void BrakeTalons();
 	void HalfPower();
 	void _Strafe(float strafe_axis);
-	Gyro* gyro;
 	bool currentGear;
 
 
