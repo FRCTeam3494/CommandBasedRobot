@@ -3,6 +3,22 @@
 
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
+#include "Gyro/IMU.h"
+#include "Gyro/IMUAdvanced.h"
+#include "Gyro/AHRS.h"
+
+/* NOTE:  Comment in only ONE of the following definitions. */
+
+#define ENABLE_IMU
+#define ENABLE_IMU_ADVANCED
+#define ENABLE_AHRS
+
+/**
+ * This is a demo program showing the use of the RobotBase class.
+ * The SimpleRobot class is the base of a robot application that will automatically call your
+ * Autonomous and OperatorControl methods at the right time as controlled by the switches on
+ * the driver station or the field controls.
+ */
 
 
 class DriveTrain: public Subsystem
@@ -21,6 +37,17 @@ private:
 	double velocityRight;
 	double velocityLeft;
 	bool cutPower;
+    NetworkTable *table;
+#if defined(ENABLE_AHRS)
+    AHRS *imu;
+#elif defined(ENABLE_IMU_ADVANCED)
+    IMUAdvanced *imu;
+#else // ENABLE_IMU
+    IMU *imu;
+#endif
+    SerialPort *serial_port;
+    bool first_iteration;
+
 
 
 

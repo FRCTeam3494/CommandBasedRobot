@@ -36,7 +36,7 @@ Lift::Lift() : Subsystem("Lift")
 	//LightSensorUp = new AnalogInput(SENSOR_UP);
 	//LightSensorDown = new AnalogInput(SENSOR_DOWN);
 
-	//limitSwitchDown = new DigitalInput(LIMITSWITCHDOWN);
+	limitSwitchDown = new AnalogInput(LIMITSWITCHDOWN);
 
 
 }
@@ -58,16 +58,25 @@ void Lift::move(float magnitude) {
 	//if(talonRight->GetAnalogInRaw() || talonLeft->GetBusVoltage() > 0)
 	//{
 
+	limit = limitSwitchDown->GetVoltage();
+
 	//if fast
-	if (mode){
+	if (mode && limit > 3.5){
 		magnitude = magnitude * 0.95;
-	} else {
+	} else if ( limit > 3.5)
+	{
 		magnitude = magnitude/1.5;
+	}
+	else
+	{
+		magnitude = 0;
 	}
 
 	talonRight->Set(-magnitude);
 	talonLeft->Set(magnitude);
-	//SmartDashboard::PutBoolean("Limit_Switch_Down",limitSwitchDown ->Get());
+
+
+	SmartDashboard::PutBoolean("Limit_Switch_Down",limitSwitchDown ->GetVoltage());
 }
 
 void Lift::ChangeMode(bool fast){

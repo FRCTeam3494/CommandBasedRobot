@@ -54,8 +54,20 @@ DriveTrain::DriveTrain() :
 	talonRightMaster->SetExpiration(0.100);
 	talonRightMaster->Set(0);
 
-	gyro = new Gyro(1);
+	//gyro = new Gyro(1);
+//////////////////////////////////////////////////////////////////////////
+	table = NetworkTable::GetTable("datatable");
+	                serial_port = new SerialPort(57600,SerialPort::kMXP);
+	        uint8_t update_rate_hz = 50;
+	#if defined(ENABLE_AHRS)
+	        imu = new AHRS(serial_port,update_rate_hz);
+	#elif defined(ENABLE_IMU_ADVANCED)
+	        imu = new IMUAdvanced(serial_port,update_rate_hz);
+	#else // ENABLE_IMU
+	        imu = new IMU(serial_port,update_rate_hz);
+	#endif
 
+////////////////////////////////////////////////////////////////////////
 	solenoid_Shifter = new DoubleSolenoid(SOL_SHIFT_1, SOL_SHIFT_2);
 
 	//false equals low gear
@@ -135,8 +147,15 @@ void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 
 	talonLeftFollowerA->Set(leftAxis);
 	talonLeftFollowerB->Set(leftAxis);*/
-
-
+////////////////////////////////////////////////////////
+	SmartDashboard::PutBoolean( "IMU_Connected", imu->IsConnected());
+	                        SmartDashboard::PutNumber("IMU_Yaw", imu->GetYaw());
+	                        SmartDashboard::PutNumber("IMU_Pitch", imu->GetPitch());
+	                        SmartDashboard::PutNumber("IMU_Roll", imu->GetRoll());
+	                        SmartDashboard::PutNumber("IMU_CompassHeading", imu->GetCompassHeading());
+	                        SmartDashboard::PutNumber("IMU_Update_Count", imu->GetUpdateCount());
+	                        SmartDashboard::PutNumber("IMU_Byte_Count", imu->GetByteCount());
+////////////////////////////////////////////////////////
 	 //Deadband for left!!!!!!
 
 	float power = 2;

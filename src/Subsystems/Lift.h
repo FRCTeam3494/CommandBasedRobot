@@ -18,8 +18,8 @@ private:
 	//AnalogInput* LightSensorUp;
 	//AnalogInput* LightSensorDown;
 
-	//DigitalInput* limitSwitchDown;
-
+	AnalogInput* limitSwitchDown;
+	double limit;
 
 	double rightVoltage;
 
