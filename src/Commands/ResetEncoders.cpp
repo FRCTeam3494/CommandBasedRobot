@@ -17,6 +17,7 @@ void ResetEncoders::Initialize()
 void ResetEncoders::Execute()
 {
 	CommandBase::driveTrain->ResetEncoders();
+	CommandBase::driveTrain->ResetGyro();
 }
 
 // Make this return true when this Command no longer needs to run execute()

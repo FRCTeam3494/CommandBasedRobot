@@ -14,8 +14,6 @@ public:
 	bool IsFinished();
 	void End();
 	void Interrupted();
-private:
-	float on_roller;
 };
 
 #endif

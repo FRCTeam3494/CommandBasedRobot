@@ -34,7 +34,7 @@ OI::OI() {
 	 * 3: Right Trigger
 	 * 5: Right Y Axis
 	 */
-	autonomous = true;
+	autonomous = false;
 	buttonA = new JoystickButton(controller, 1);
 	buttonB = new JoystickButton(controller, 2);
 	buttonX = new JoystickButton(controller, 3);

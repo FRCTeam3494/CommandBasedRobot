@@ -12,8 +12,10 @@ Autonomous_Sequence::Autonomous_Sequence() {
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
 	// these will run in order.
-	//AddSequential(new Idiot_Turn());
-	//Wait(500);
+
+
+	//SETS LOW GEAR, LIFTS CONTAINER, OPENS ROLLERS, RUN ROLLERS, MOVE FORWARD, TURN LEFT 90 DEGREEs, THEN MOVE FORWARD
+	//low gear
 	AddSequential(new ShiftGear(false));
 
 
@@ -26,6 +28,20 @@ Autonomous_Sequence::Autonomous_Sequence() {
 	AddSequential(new Autonomous_Move(1, 0.4));
 	AddSequential(new Turn(90, 0.5, true));
 	AddSequential(new Autonomous_Move(2.85, .85));
+
+
+	/**
+	 * Low gear
+	 * slow lift mode
+	 * Lift Container
+	 * open rollers
+	 * move forward (PARALLEL RUN ROLLERS)
+	 * move lift down
+	 * move lift up
+	 * move forwards
+	 * run rolllers
+	 *
+	 */
 
 // To run multiple commands at the same time,
 // use AddParallel()

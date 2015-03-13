@@ -15,10 +15,6 @@ public:
 	void End();
 	void Interrupted();
 
-private:
-	float strafe_axis;
-	//DriveTrain* driveTrain;
-	//bool power;
 };
 
 #endif

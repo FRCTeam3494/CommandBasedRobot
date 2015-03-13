@@ -47,8 +47,8 @@ const int CLIPSOL = 7;
 
 const int SOL_ROLLER_1 = 0;
 const int SOL_ROLLER_2 = 1;
-const int SOL_SHIFT_1 = 5;
-const int SOL_SHIFT_2 = 4;
+const int SOL_SHIFT_1 = 2;
+const int SOL_SHIFT_2 = 3;
 
 const int LEFT_LIFT_LIMIT = 0;
 

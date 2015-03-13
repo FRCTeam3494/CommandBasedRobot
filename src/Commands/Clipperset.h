@@ -15,7 +15,6 @@ public:
 	void End();
 	void Interrupted();
 private:
-	bool set;
 	bool Clip;
 };
 

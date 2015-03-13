@@ -17,7 +17,7 @@ void Autonimous_Roller::Initialize()
 void Autonimous_Roller::Execute()
 {
 	oi->SetAuto(true);
-	wait(time);
+	Wait(letime);
 	oi->SetAuto(false);
 }
 

@@ -70,7 +70,8 @@ void Lift::move(float magnitude) {
 	talonLeft->Set(magnitude);
 
 
-	SmartDashboard::PutBoolean("Limit_Switch_Down",limitSwitchDown ->GetVoltage());
+	//SmartDashboard::PutNumber("Limit_Switch_Down",limitSwitchDown ->GetVoltage());
+	//SmartDashboard::PutNumber("Limit_Switch_Up",limitSwitchDown ->GetVoltage());
 }
 
 void Lift::ChangeMode(bool fast){
