@@ -16,9 +16,9 @@ void Autonimous_Roller::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void Autonimous_Roller::Execute()
 {
-	CommandBase::roller->Roll(0.5);
+	oi->SetAuto(true);
 	wait(time);
-	CommandBase::roller->Roll(0);
+	oi->SetAuto(false);
 }
 
 // Make this return true when this Command no longer needs to run execute()

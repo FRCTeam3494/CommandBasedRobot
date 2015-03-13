@@ -61,17 +61,11 @@ void Lift::move(float magnitude) {
 	limit = limitSwitchDown->GetVoltage();
 
 	//if fast
-	if (mode && limit > 3.5){
+	if (mode){
 		magnitude = magnitude * 0.95;
-	} else if ( limit > 3.5)
-	{
+	} else {
 		magnitude = magnitude/1.5;
 	}
-	else
-	{
-		magnitude = 0;
-	}
-
 	talonRight->Set(-magnitude);
 	talonLeft->Set(magnitude);
 

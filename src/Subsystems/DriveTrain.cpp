@@ -187,12 +187,6 @@ void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 
 		 talonRightMaster->Set(rightValue);
 			talonRightFollowerA->Set(rightValue);
-			//talonRightFollowerB->Set(rightAxis);
-
-		SmartDashboard::PutNumber("LEFT", leftValue);
-
-
-SmartDashboard::PutNumber("AAAAAA_GYRO ANGLE",gyro->GetAngle());
 }
 
 void DriveTrain::ChangeGear(bool _gear) {

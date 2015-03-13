@@ -8,7 +8,7 @@
 class Turn: public CommandBase
 {
 public:
-	Turn(float _angle, float _speed);
+	Turn(float _angle, float _speed, bool _direction);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
@@ -18,7 +18,8 @@ public:
 private:
 	float angle;
 	float speed;
-	bool slow;
+	float diff;
+	bool direction;
 };
 
 #endif

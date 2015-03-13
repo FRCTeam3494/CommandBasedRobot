@@ -24,9 +24,11 @@ public:
 	CommandBase(char const *name);
 	CommandBase();
 	static void init();
+	static void autonomous(bool mode);
 	// Create a single static instance of all of your subsystems
 
 	static OI *oi;
+	static bool AUTONOMOUS;
 	static DriveTrain* driveTrain;
 	static Lift* lift;
 	static Rollers* roller;

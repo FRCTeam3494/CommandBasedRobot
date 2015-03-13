@@ -7,6 +7,7 @@ OI* CommandBase::oi = NULL;
 Lift* CommandBase::lift = NULL;
 Rollers* CommandBase::roller = NULL;
 Kompressor* CommandBase::kompressor = NULL;
+bool AUTONOMOUS;
 //Solenoids* CommandBase::solenoids = NULL;
 
 CommandBase::CommandBase(char const *name) :
@@ -24,11 +25,14 @@ void CommandBase::init()
 {
 	// Create a single static instance of all of your subsystems. The following
 	// line should be repeated for each subsystem in the project.
-
 	lift = new Lift();
 	driveTrain = new DriveTrain();
 	oi = new OI();
 	roller = new Rollers();
 	kompressor = new Kompressor();
 	//solenoids = new Solenoids();
+}
+
+void autonomous(bool mode){
+	AUTONOMOUS = mode;
 }

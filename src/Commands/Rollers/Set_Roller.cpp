@@ -1,4 +1,5 @@
 #include "Set_Roller.h"
+#include "../../Robot.h"
 
 Set_Roller::Set_Roller()
 {
@@ -19,6 +20,8 @@ void Set_Roller::Execute()
 		CommandBase::roller->Roll(-0.3);
 	} else if (oi->GetRightBumper()){
 		CommandBase::roller->Roll(0.3);
+	} else if (oi->Auto()){
+		CommandBase::roller->Roll(0.5);
 	} else {
 		CommandBase::roller->Roll(0);
 	}
@@ -29,6 +32,7 @@ bool Set_Roller::IsFinished()
 {
 	return false;
 }
+
 
 // Called once after isFinished returns true
 void Set_Roller::End()

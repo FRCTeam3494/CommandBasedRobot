@@ -42,7 +42,6 @@ else
 }
 	CommandBase::lift->move(magnitude_lift);
 
-	SmartDashboard::PutNumber("Magnitude", magnitude_lift);
 }
 
 // Make this return true when this Command no longer needs to run execute()
