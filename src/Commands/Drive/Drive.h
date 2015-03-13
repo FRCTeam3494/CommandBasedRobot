@@ -14,7 +14,7 @@ public:
 	bool IsFinished();
 	void End();
 	void Interrupted();
-
+	float strafe_axis;
 };
 
 #endif

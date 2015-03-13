@@ -9,14 +9,7 @@ class Lift: public Subsystem {
 private:
 	CANTalon* talonLeft;
 	CANTalon* talonRight;
-	//AnalogInput* leftIR;
-	//AnalogInput* rightIR;
-	Talon* pusherRight;
-	Talon* pusherLeft;
 
-
-	//AnalogInput* LightSensorUp;
-	//AnalogInput* LightSensorDown;
 
 	AnalogInput* limitSwitchDown;
 	double limit;

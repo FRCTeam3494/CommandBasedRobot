@@ -78,13 +78,6 @@ void Lift::ChangeMode(bool fast){
 	mode = fast;
 }
 
-void Lift::MovePusher(float speed)
-{
-	pusherRight->Set(-speed);
-	pusherLeft->Set(-speed);
-
-}
-
 void Lift::L_Sol_Set() {
 
 	Clip->Set(true);
