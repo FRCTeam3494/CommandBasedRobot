@@ -22,10 +22,12 @@ void Solenoid_Roller_Set::Execute()
 	if(Mode)
 	{
 		CommandBase::roller->TriggerSolenoid();
+		SmartDashboard::PutBoolean("Rollers Open", true);
 	}
 	else
 	{
 		CommandBase::roller->SolenoidOff();
+		SmartDashboard::PutBoolean("Rollers Open", false);
 	}
 
 	//

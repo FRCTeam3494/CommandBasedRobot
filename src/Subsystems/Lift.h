@@ -11,18 +11,21 @@ private:
 	CANTalon* talonRight;
 
 
-	AnalogInput* limitSwitchDown;
-	double limit;
+	DigitalInput* limitSwitchDown;
+	//DigitalInput* limitSwitchUp;
+	//double rightVoltage;
+	//double leftVoltage;
 
-	double rightVoltage;
 
-	double leftVoltage;
 
-	double leftMeters;
-	double rightMeters;
+	//double leftMeters;
+	//double rightMeters;
 	bool mode;
 
-	Solenoid* Clip;
+	DoubleSolenoid* Clip;
+	DoubleSolenoid* Clip_;
+	float power;
+
 
 public:
 	Lift();
@@ -36,6 +39,11 @@ public:
 	void move(float magnitude);
 	void L_Sol_Set();
 	void L_Sol_Off();
+	void H_Sol_Set();
+	void H_Sol_Off();
+	bool limit;
+
+
 };
 
 #endif

@@ -7,7 +7,7 @@ Drive::Drive()
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis)
 	Requires(CommandBase::driveTrain);
-
+	strafe_axis = 0;
 
 }
 
@@ -24,10 +24,7 @@ void Drive::Execute()
 
 
 
-	CommandBase::driveTrain->TankDrive(leftThrottle, rightThrottle); // TODO fix joystick
-	SmartDashboard::PutNumber("Left", leftThrottle);
-	SmartDashboard::PutNumber("Right", rightThrottle);
-	//CommandBase::driveTrain->TankDrive(1, -1);
+	CommandBase::driveTrain->TankDrive(leftThrottle, rightThrottle);
 
 
 	if ( oi->GetLeftTrigger())

@@ -21,7 +21,7 @@ void Set_Roller::Execute()
 	} else if (oi->GetRightBumper()){
 		CommandBase::roller->Roll(0.5);
 	} else if (oi->Auto()){
-		CommandBase::roller->Roll(-0.5);
+		CommandBase::roller->Roll(0.5);
 	} else {
 		CommandBase::roller->Roll(0);
 	}

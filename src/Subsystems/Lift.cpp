@@ -1,7 +1,6 @@
 #include "Lift.h"
 #include "../RobotMap.h"
 #include "../Commands/Lifting.h"
-#include "Commands/Print.h"
 #include <math.h>
 
 Lift::Lift() : Subsystem("Lift")
@@ -20,24 +19,19 @@ Lift::Lift() : Subsystem("Lift")
 	talonRight->SetExpiration(0.100);
 	talonRight->Set(0);
 
-	Clip = new Solenoid(CLIPSOL);
+	Clip = new DoubleSolenoid(CLIPSOL, CLIPSOL_2);
+	Clip_ = new DoubleSolenoid(SOL_H, SOL_H1);
 
-	SmartDashboard::init();
-	//leftIR=new AnalogInput(LEFT_IR);
-	//rightIR=new AnalogInput(RIGHT_IR);
+	limit = false;
+	power = 1.0;
+	//rightVoltage = 0;
+	//leftVoltage = 0 ;
 
-	rightVoltage = 0;
+	//leftMeters = 0.0;
+	//rightMeters = 0.0;
 
-	leftVoltage = 0 ;
-
-	leftMeters = 0.0;
-	rightMeters = 0.0;
-
-	//LightSensorUp = new AnalogInput(SENSOR_UP);
-	//LightSensorDown = new AnalogInput(SENSOR_DOWN);
-
-	limitSwitchDown = new AnalogInput(LIMITSWITCHDOWN);
-
+	limitSwitchDown = new DigitalInput(0);
+	mode = false;
 
 }
 
@@ -52,13 +46,8 @@ void Lift::InitDefaultCommand()
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 void Lift::move(float magnitude) {
-
-	//SmartDashboard::PutBoolean("Digital_Encoder", ReachLimit());
-	//unsure which is positive, which is negative
-	//if(talonRight->GetAnalogInRaw() || talonLeft->GetBusVoltage() > 0)
-	//{
-
-	limit = limitSwitchDown->GetVoltage();
+	SmartDashboard::PutBoolean("Lift Fast Mode", mode);
+	limit = limitSwitchDown->Get();
 
 	//if fast
 	if (mode){
@@ -66,12 +55,20 @@ void Lift::move(float magnitude) {
 	} else {
 		magnitude = magnitude/1.5;
 	}
+
+	//bottomed lift
+	if (magnitude < 0 && limit){
+		magnitude = magnitude * 0.1;
+	}
 	talonRight->Set(-magnitude);
-	talonLeft->Set(magnitude);
 
+	if (magnitude > 0){
+		talonLeft->Set(magnitude);
+	} else {
+		talonLeft->Set(magnitude);
+	}
 
-	//SmartDashboard::PutNumber("Limit_Switch_Down",limitSwitchDown ->GetVoltage());
-	//SmartDashboard::PutNumber("Limit_Switch_Up",limitSwitchDown ->GetVoltage());
+	SmartDashboard::PutBoolean("Bottom Limit",limit);
 }
 
 void Lift::ChangeMode(bool fast){
@@ -80,11 +77,24 @@ void Lift::ChangeMode(bool fast){
 
 void Lift::L_Sol_Set() {
 
-	Clip->Set(true);
+	Clip->Set(Clip->kReverse);
 
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 void Lift::L_Sol_Off() {
-	Clip->Set(false);
+	Clip->Set(Clip->kForward);
 }
+
+void Lift::H_Sol_Set() {
+
+	Clip_->Set(Clip_->kForward);
+
+}
+// Put methods for controlling this subsystem
+// here. Call these from Commands.
+void Lift::H_Sol_Off() {
+	Clip_->Set(Clip_->kReverse);
+}
+
+

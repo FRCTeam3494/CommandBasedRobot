@@ -2,16 +2,14 @@
 #include "RobotMap.h"
 
 #include "Commands/Rollers/Set_Roller.h"
+#include "Commands/Rollers/Double_Power_Rollers.h"
 #include "Commands/Lifting.h"
-#include "Commands/Compressor_Closed_Loop.h"
-
-#include "Commands/Compressor_Closed_Loop.h"
 #include "Commands/Rollers/Solenoid_Roller_Set.h"
+#include "Commands/Container_Holder.h"
 
 #include "Commands/ResetEncoders.h"
 #include "Commands/Autonomous/Autonomous_Move.h"
 
-#include "Commands/Print.h"
 #include "Commands/Drive/Cut_Power.h"
 //Drive/ Folder
 
@@ -20,6 +18,7 @@
 #include "Subsystems/DriveTrain.h"
 #include "Commands/ChangeSpeed.h"
 #include "Commands/Clipperset.h"
+#include "Commands/Container_Holder.h"
 
 //
 OI::OI() {
@@ -65,15 +64,18 @@ OI::OI() {
 //gear up
 	buttonB->WhenPressed(new ShiftGear(false));
 
+	buttonStart->WhenPressed(new Double_Power_Rollers());
 	buttonSelect->WhenPressed(new Cut_Power());
 	buttonStart_2->WhenPressed(new ResetEncoders());
-	buttonSelect_2->WhenPressed(new Compressor_Closed_Loop());
 
 	buttonY_2->WhenPressed(new ChangeSpeed(true));
 	buttonA_2->WhenPressed(new ChangeSpeed(false));
 
 	buttonX_2->WhenPressed(new Clipperset(true));
 	buttonB_2->WhenPressed(new Clipperset(false));
+
+	buttonLB_2->WhenPressed(new Container_Holder(true));
+	buttonRB_2->WhenPressed(new Container_Holder(false));
 }
 
 float OI::GetLeftJoystick() {

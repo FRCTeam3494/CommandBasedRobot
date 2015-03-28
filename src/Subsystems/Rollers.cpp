@@ -13,7 +13,8 @@ Rollers::Rollers() :
 	talonright->SetSafetyEnabled(false);
 	talonright->SetExpiration(0.100);
 	talonright->Set(0);
-
+	mode = false;
+	//initializes as slow mode
 	solenoid = new DoubleSolenoid(SOL_ROLLER_1,SOL_ROLLER_2 );
 }
 
@@ -21,14 +22,28 @@ void Rollers::InitDefaultCommand() {
 	SetDefaultCommand(new Set_Roller());
 }
 
+void Rollers::ToggleMode(){
+	if (mode){
+		mode = false;
+	} else {
+		mode = true;
+	}
+	SmartDashboard::PutBoolean("Rollers Double Power", mode);
+}
+
 void Rollers::Roll(float on_roller) {
-	talonright->Set(-on_roller);
-	talonleft->Set(on_roller);
+	SmartDashboard::PutBoolean("Rollers Double Power", mode);
+	if (mode){
+		talonright->Set(-2*on_roller);
+		talonleft->Set(2*on_roller);
+	} else {
+		talonright->Set(-on_roller);
+		talonleft->Set(on_roller);
+	}
 }
 
 //close
 void Rollers::TriggerSolenoid() {
-
 	solenoid->Set(solenoid->kForward);
 
 }

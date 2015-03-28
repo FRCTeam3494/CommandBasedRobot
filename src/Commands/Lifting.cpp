@@ -21,22 +21,32 @@ void Lifting::Initialize()
 void Lifting::Execute()
 {
 
+	if(oi->GetRightTrigger_2() > .25)
+	{
+		magnitude_lift = oi->GetRightTrigger_2();
+	}
+	else if (oi->GetLeftTrigger_2() > .25)
+	{
+		magnitude_lift = -oi->GetLeftTrigger_2();
+	}
+	else if (oi->GetLeftTrigger_2() > .25 && CommandBase::lift->limit == false)
+	{
+		magnitude_lift = -oi->GetLeftTrigger_2();
+	}
+	else
+	{
+		magnitude_lift = 0;
+	}
 
-if(oi->GetRightTrigger_2() > .25)
-{
-magnitude_lift = oi->GetRightTrigger_2();
-}
-else if (oi->GetLeftTrigger_2() > .25)
-{
-magnitude_lift = -oi->GetLeftTrigger_2();
-}
-else
-{
-	magnitude_lift = 0;
-}
+	//opens rollers if lifting up
+	if (magnitude_lift > 0){
+		CommandBase::roller->SolenoidOff();
+	}
+
 	CommandBase::lift->move(magnitude_lift);
-
 }
+
+
 
 // Make this return true when this Command no longer needs to run execute()
 bool Lifting::IsFinished()

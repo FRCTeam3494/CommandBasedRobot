@@ -16,7 +16,6 @@ void Clipperset::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void Clipperset::Execute()
 {
-
 	if(Clip)
 	{
 		CommandBase::lift->L_Sol_Set();
@@ -26,7 +25,7 @@ void Clipperset::Execute()
 	{
 		CommandBase::lift->L_Sol_Off();
 	}
-
+	SmartDashboard::PutBoolean("Clippers Open", Clip);
 }
 
 // Make this return true when this Command no longer needs to run execute()

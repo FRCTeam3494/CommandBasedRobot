@@ -1,6 +1,5 @@
 #include "Kompressor.h"
 #include "../RobotMap.h"
-#include "Commands/Compressor_Closed_Loop.h"
 
 Kompressor::Kompressor() :
 		Subsystem("Kompressor")
@@ -10,8 +9,6 @@ Kompressor::Kompressor() :
 	//starts off false because it will be switched to true the first tuime called
 	//On  = false;
 	compressor->SetClosedLoopControl(true);
-	SmartDashboard::init();
-
 }
 
 void Kompressor::InitDefaultCommand()

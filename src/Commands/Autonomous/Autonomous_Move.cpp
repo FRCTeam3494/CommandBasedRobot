@@ -8,18 +8,7 @@ Autonomous_Move::Autonomous_Move(float _distance, float _speed) {
 	distance = _distance;
 	speed = _speed;
 
-	SmartDashboard::PutNumber("GEAR", CommandBase::driveTrain->currentGear);
-	if (CommandBase::driveTrain->currentGear == true) {
-		//high gear
-		target = distance * 10000;
-	} else {
-		//low gear
-		target = (distance * 19961);
-	}
-	SmartDashboard::PutNumber("TARGET", target);
-
-	//17384 Scracth that is false..... It is really 19961 encoder units per meter
-	//20166 original figure
+	target = (distance * 9400);
 }
 
 // Called just before this Command runs the first time
@@ -36,6 +25,7 @@ void Autonomous_Move::Execute() {
 bool Autonomous_Move::IsFinished() {
 
 	if (CommandBase::driveTrain->GetPosition() >= target) {
+		CommandBase::driveTrain->TankDrive(0, 0);
 		return true;
 	}
 

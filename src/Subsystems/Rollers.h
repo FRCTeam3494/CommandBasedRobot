@@ -14,6 +14,7 @@ private:
 	// for methods that implement subsystem capabilities
 	Talon* talonleft;
 	Talon* talonright;
+	bool mode;
 	DoubleSolenoid* solenoid;
 public:
 	Rollers();
@@ -21,7 +22,7 @@ public:
 	void Roll(float on_roller);
 	void TriggerSolenoid();
 	void SolenoidOff();
-
+	void ToggleMode();
 };
 
 #endif
