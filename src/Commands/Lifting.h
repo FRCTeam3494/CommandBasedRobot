@@ -18,6 +18,7 @@ public:
 
 private:
 	float magnitude_lift;
+	float SLOWLIFTGAIN = 0.10;
 	//LiftingTrain* LiftingTrain;
 };
 

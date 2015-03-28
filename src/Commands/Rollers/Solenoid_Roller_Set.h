@@ -14,7 +14,6 @@ public:
 	void End();
 	void Interrupted();
 
-	int BullShit;
 	bool Mode;
 };
 

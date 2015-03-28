@@ -16,12 +16,20 @@ void Set_Roller::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void Set_Roller::Execute()
 {
+	//OUT
 	if (oi->GetLeftBumper()){
 		CommandBase::roller->Roll(-0.5);
 	} else if (oi->GetRightBumper()){
 		CommandBase::roller->Roll(0.5);
-	} else if (oi->Auto()){
+	} else if (oi->Auto() == 2){
+		CommandBase::roller->Roll(0.5);
+	} else if (oi->Auto() == 3){
 		CommandBase::roller->Roll(-0.5);
+	} else if (oi->Auto() == 4){
+		//throw right
+		CommandBase::roller->Throw(true);
+	} else if (oi->Auto() == 5){
+		CommandBase::roller->Throw(false);
 	} else {
 		CommandBase::roller->Roll(0);
 	}

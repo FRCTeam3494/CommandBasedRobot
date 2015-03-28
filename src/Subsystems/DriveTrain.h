@@ -6,9 +6,6 @@
 #include "Gyro/IMU.h"
 #include "Gyro/IMUAdvanced.h"
 #include "Gyro/AHRS.h"
-
-/* NOTE:  Comment in only ONE of the following definitions. */
-
 #define ENABLE_IMU
 #define ENABLE_IMU_ADVANCED
 #define ENABLE_AHRS
@@ -20,9 +17,7 @@
  * the driver station or the field controls.
  */
 
-
-class DriveTrain: public Subsystem
-{
+class DriveTrain: public Subsystem {
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
@@ -31,27 +26,23 @@ private:
 	CANTalon* talon_strafe;
 	CANTalon* talonRightMaster;
 	CANTalon* talonRightFollowerA;
-	//CANTalon* talonRightFollowerB;
 	double position;
 	DoubleSolenoid* solenoid_Shifter;
 	double velocityRight;
 	double velocityLeft;
 	bool cutPower;
-    NetworkTable *table;
+
+	NetworkTable *table;
 #if defined(ENABLE_AHRS)
-    AHRS *imu;
+	AHRS *imu;
 #elif defined(ENABLE_IMU_ADVANCED)
-    IMUAdvanced *imu;
+	IMUAdvanced *imu;
 #else // ENABLE_IMU
-    IMU *imu;
+	IMU *imu;
 #endif
-    SerialPort *serial_port;
-
-
-
+	SerialPort *serial_port;
 
 	//true is low gear and false is second gear(numbers are too hard for me)
-
 
 public:
 	DriveTrain();
@@ -65,38 +56,35 @@ public:
 	void BrakeTalons();
 	void HalfPower();
 	void _Strafe(float strafe_axis);
+
 	bool currentGear;
-
-
-
-
 
 };
 
 #endif
 
 /*#ifndef DriveTrain_
-#define DriveTrain_H
+ #define DriveTrain_H
 
-#include "Commands/Subsystem.h"
-#include "WPILib.h"
+ #include "Commands/Subsystem.h"
+ #include "WPILib.h"
 
-class DriveTrain: public Subsystem {
-private:
-	// It's desirable that everything possible under private except
-	// for methods that implement subsystem capabilities
-public:
-	DriveTrain();
-	void InitDefaultCommand();
+ class DriveTrain: public Subsystem {
+ private:
+ // It's desirable that everything possible under private except
+ // for methods that implement subsystem capabilities
+ public:
+ DriveTrain();
+ void InitDefaultCommand();
 
-	CANTalon* talon_1;
-	CANTalon* talon_2;
-	CANTalon* talon_3;
-	CANTalon* talon_4;
+ CANTalon* talon_1;
+ CANTalon* talon_2;
+ CANTalon* talon_3;
+ CANTalon* talon_4;
 
 
-	void TankDrive(float leftAxis, float rightAxis);
-};
+ void TankDrive(float leftAxis, float rightAxis);
+ };
 
-#endif
-*/
+ #endif
+ */

@@ -1,7 +1,6 @@
 #include "DriveTrain.h"
 #include "../RobotMap.h"
 #include "../Commands/Drive/Drive.h"
-#include "../Commands/Drive/DriveBase_Command_Group.h"
 #include <math.h>
 
 //0.478779 meters per revolution
@@ -16,21 +15,6 @@ DriveTrain::DriveTrain() :
 	talonRightMaster = new CANTalon(RIGHT_MOTOR_MASTER);
 	talonRightFollowerA = new CANTalon(RIGHT_MOTOR_FOLLOWER_A);
 	//talonRightFollowerB = new CANTalon(RIGHT_MOTOR_FOLLOWER_B);
-
-	/*// Talon 2 follow 1
-	 talonRightFollowerA->SetControlMode(CANSpeedController::kFollower);
-	 talonRightFollowerA->Set(RIGHT_MOTOR_MASTER);
-
-	 talonRightFollowerB->SetControlMode(CANSpeedController::kFollower);
-	 talonRightFollowerB->Set(RIGHT_MOTOR_MASTER);
-
-	 //Talon 4 follow 3
-	 talonLeftFollowerA->SetControlMode(CANSpeedController::kFollower);
-	 talonLeftFollowerA->Set(LEFT_MOTOR_MASTER);
-
-	 talonLeftFollowerB->SetControlMode(CANSpeedController::kFollower);
-	 talonLeftFollowerB->Set(LEFT_MOTOR_MASTER);
-	 */
 
 	talonLeftMaster->EnableControl();
 	talonRightMaster->EnableControl();
@@ -53,7 +37,6 @@ DriveTrain::DriveTrain() :
 	talonRightMaster->SetExpiration(0.100);
 	talonRightMaster->Set(0);
 
-	//gyro = new Gyro(1);
 //////////////////////////////////////////////////////////////////////////
 	table = NetworkTable::GetTable("datatable");
 	serial_port = new SerialPort(57600, SerialPort::kMXP);
@@ -63,10 +46,9 @@ DriveTrain::DriveTrain() :
 #elif defined(ENABLE_IMU_ADVANCED)
 	imu = new IMUAdvanced(serial_port,update_rate_hz);
 #else // ENABLE_IMU
-	imu = new IMU(serial_port,update_rate_hz);
+	imu = new IMU(serial_port, update_rate_hz);
 #endif
-
-////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 	solenoid_Shifter = new DoubleSolenoid(SOL_SHIFT_1, SOL_SHIFT_2);
 
 	//false equals low gear
@@ -109,22 +91,6 @@ void DriveTrain::InitDefaultCommand() {
 // here. Call these from Commands.
 void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 
-	/*
-	 //Deadband for left!!!!!!
-	 if (abs(leftAxis) >= 0.09f) {
-	 talonRightMaster->Set(leftAxis);
-	 } else {
-	 talonRightMaster->Set(0.0f);
-	 }
-
-	 //deadband for Right!!!!!!!!!!!!!!!!!!!
-	 if (abs(rightAxis) >= 0.09f) {
-	 talonLeftMaster->Set(rightAxis);
-	 } else {
-	 talonLeftMaster->Set(0.0f);
-	 }
-
-	 */
 	if (cutPower == true) {
 		leftAxis /= 2;
 		rightAxis /= 2;
@@ -133,21 +99,8 @@ void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 	velocityRight = talonRightMaster->GetEncVel();
 	velocityLeft = talonLeftMaster->GetEncVel();
 
-	SmartDashboard::PutNumber("Position", GetPosition());
-
-	/*talonRightMaster->Set(rightAxis);
-	 talonLeftMaster->Set(leftAxis);
-
-	 talonRightFollowerA->Set(rightAxis);
-	 talonRightFollowerB->Set(rightAxis);
-
-	 talonLeftFollowerA->Set(leftAxis);
-	 talonLeftFollowerB->Set(leftAxis);*/
-////////////////////////////////////////////////////////
-	SmartDashboard::PutBoolean("IMU_Connected", imu->IsConnected());
-	SmartDashboard::PutNumber("IMU_Yaw", imu->GetYaw());
-////////////////////////////////////////////////////////
-	//Deadband for left!!!!!!
+	SmartDashboard::PutBoolean("High Gear", currentGear);
+	SmartDashboard::PutBoolean("Half Power", cutPower);
 
 	float power = 2;
 
@@ -199,12 +152,12 @@ void DriveTrain::_Strafe(float strafe_axis) {
 }
 
 void DriveTrain::HalfPower() {
+
 	if (cutPower == false) {
 		cutPower = true;
 	} else if (cutPower == true) {
-
 		cutPower = false;
 	}
-
+	SmartDashboard::PutBoolean("Half Power", cutPower);
 }
 

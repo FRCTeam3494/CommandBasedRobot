@@ -21,6 +21,7 @@ void ShiftGear::Initialize()
 void ShiftGear::Execute()
 {
 	CommandBase::driveTrain->ChangeGear(mode);
+	SmartDashboard::PutBoolean("High Gear", mode);
 }
 
 // Make this return true when this Command no longer needs to run execute()

@@ -7,12 +7,13 @@
 class Idiot_Lift: public CommandBase
 {
 public:
-	Idiot_Lift(float _time);
+	Idiot_Lift(float _time, bool _direction);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
+	bool direction;
 	float letime;
 };
 

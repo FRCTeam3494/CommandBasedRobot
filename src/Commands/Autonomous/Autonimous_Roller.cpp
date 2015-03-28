@@ -1,10 +1,8 @@
 #include "Autonimous_Roller.h"
 
-Autonimous_Roller::Autonimous_Roller(float _time)
+Autonimous_Roller::Autonimous_Roller(bool _on)
 {
-	letime = _time;
-	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(chassis);
+	on = _on;
 }
 
 // Called just before this Command runs the first time
@@ -16,9 +14,7 @@ void Autonimous_Roller::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void Autonimous_Roller::Execute()
 {
-	oi->SetAuto(true);
-	Wait(letime);
-	oi->SetAuto(false);
+	oi->SetAuto(on);
 }
 
 // Make this return true when this Command no longer needs to run execute()

@@ -34,5 +34,5 @@ void CommandBase::init()
 }
 
 void autonomous(bool mode){
-	AUTONOMOUS = mode;
+	//AUTONOMOUS = mode;
 }

@@ -5,8 +5,6 @@ Solenoid_Roller_Set::Solenoid_Roller_Set(bool FuckMichael)
 {
 	// Use Requires() here to declare subsystem dependencies
 	//Requires(CommandBase::solenoids);
-
-	 BullShit = 0;
 	 Mode = FuckMichael;
 }
 
@@ -22,11 +20,10 @@ void Solenoid_Roller_Set::Execute()
 	if(Mode)
 	{
 		CommandBase::roller->TriggerSolenoid();
-	}
-	else
-	{
+	}else{
 		CommandBase::roller->SolenoidOff();
 	}
+	SmartDashboard::PutBoolean("Rollers Open", Mode);
 
 	//
 	//SmartDashboard::PutString("Roller_State","Done");
@@ -38,8 +35,6 @@ void Solenoid_Roller_Set::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool Solenoid_Roller_Set::IsFinished()
 {
-
-
 	return true;
 }
 

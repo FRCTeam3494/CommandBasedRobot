@@ -8,7 +8,7 @@ class OI
 private:
 	Joystick* controller;
 	Joystick* controller_2;
-	bool autonomous;
+	int rollerMode;
 public:
 	OI();
 	float GetLeftJoystick();
@@ -20,8 +20,8 @@ public:
 	float GetLeftBumper();
 	float GetRightBumper();
 	float GetRightJoystickStrafe();
-	void SetAuto(bool _mode);
-	bool Auto();
+	void SetAuto(int _mode);
+	int Auto();
 	JoystickButton* buttonA;
 	JoystickButton* buttonB;
 	JoystickButton* buttonX;
