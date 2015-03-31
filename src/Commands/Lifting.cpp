@@ -29,19 +29,12 @@ void Lifting::Execute()
 	{
 		magnitude_lift = -oi->GetLeftTrigger_2();
 	}
-	else if (oi->GetLeftTrigger_2() > .25 && CommandBase::lift->limit == false)
-	{
-		magnitude_lift = -oi->GetLeftTrigger_2();
-	}
 	else
 	{
 		magnitude_lift = 0;
 	}
 
 	//opens rollers if lifting up
-	if (magnitude_lift != 0){
-		CommandBase::roller->TriggerSolenoid();
-	}
 
 	CommandBase::lift->move(magnitude_lift);
 }

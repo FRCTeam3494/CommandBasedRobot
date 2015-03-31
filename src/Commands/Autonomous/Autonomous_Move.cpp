@@ -7,8 +7,8 @@ Autonomous_Move::Autonomous_Move(float _distance, float _speed) {
 	Requires(CommandBase::driveTrain);
 	distance = _distance;
 	speed = _speed;
-
-	target = (distance * 9400);
+	CommandBase::driveTrain->ResetEncoders();
+	target = (distance * 21000);
 }
 
 // Called just before this Command runs the first time
@@ -26,6 +26,7 @@ bool Autonomous_Move::IsFinished() {
 
 	if (CommandBase::driveTrain->GetPosition() >= target) {
 		CommandBase::driveTrain->TankDrive(0, 0);
+		CommandBase::driveTrain->ResetEncoders();
 		return true;
 	}
 

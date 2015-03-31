@@ -61,12 +61,8 @@ void Lift::move(float magnitude) {
 		magnitude = magnitude * 0.1;
 	}
 	talonRight->Set(-magnitude);
+	talonLeft->Set(magnitude);
 
-	if (magnitude > 0){
-		talonLeft->Set(magnitude);
-	} else {
-		talonLeft->Set(magnitude);
-	}
 
 	SmartDashboard::PutBoolean("Bottom Limit",limit);
 }

@@ -90,7 +90,7 @@ void DriveTrain::InitDefaultCommand() {
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
-
+	SmartDashboard::PutNumber("Position", GetPosition());
 	if (cutPower == true) {
 		leftAxis /= 2;
 		rightAxis /= 2;

@@ -65,6 +65,5 @@ const int SENSOR_DOWN = 1;
 //const int PUSHER_LEFT = 3;
 //const int PUSHER_RIGHT = 4;
 
-const int LIMITSWITCHDOWN = 1;
-const int LIMITSWITCHUP = 0;
+const int LIMITSWITCHDOWN = 0;
 #endif

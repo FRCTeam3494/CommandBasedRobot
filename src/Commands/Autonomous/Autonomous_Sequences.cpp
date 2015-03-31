@@ -110,30 +110,17 @@ void Autonomous_Sequences::auto1() {
 	AddSequential(new ShiftGear(false));
 	AddSequential(new Idiot_Lift(1.5, true));
 	AddSequential(new Solenoid_Roller_Set(true));
-	AddSequential(new Autonomous_Move(0.90, 0.75));
+	AddSequential(new Autonomous_Move(0.76, 0.75));
 	AddSequential(new Clipperset(false));
 	AddSequential(new Bottom_Lift());
-	AddSequential(new Idiot_Lift(0.2, false));
-	AddSequential(new Idiot_Lift(4.25, true));
+	AddSequential(new Idiot_Lift(0.25, false));
+	AddSequential(new Idiot_Lift(4, true));
 	AddSequential(new Container_Holder(false));
 	AddSequential(new Idiot_Lift(1.5, false));
 
-	//close rollers
-	AddSequential(new Solenoid_Roller_Set(false));
-	AddSequential(new Autonomous_Roller(3));
-	AddSequential(new Autonomous_Move(0.7, 0.7));
-	//AddSequential(new Bottom_Lift());
-
-
-	/**
-		AddParallel(new Solenoid_Roller_Set(true));
-	AddSequential(new Autonomous_Move(0.90, 0.55));
-	AddParallel(new Solenoid_Roller_Set(false));
-
-	AddSequential(new Turn(86, 0.65, true));
+	//Turn
+	 AddSequential(new Turn(90, 0.65, true));
 	AddSequential(new Autonomous_Move(2.85, .85));
-	**/
-	//AddSequential(new Autonomous_Roller(1));
 }
 
 void Autonomous_Sequences::auto2() {
@@ -143,12 +130,10 @@ void Autonomous_Sequences::auto2() {
 	AddSequential(new Solenoid_Roller_Set(true));
 }
 
-//THROW RIGHT
 void Autonomous_Sequences::auto3() {
 	AddSequential(new Autonomous_Roller(4));
 }
 
-//THROW LEFT
 void Autonomous_Sequences::auto4() {
 	AddSequential(new Autonomous_Roller(5));
 }
