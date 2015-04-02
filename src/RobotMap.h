@@ -46,12 +46,12 @@ const int COMPRESSOR = 0;
 const int CLIPSOL = 6;
 const int CLIPSOL_2 = 7;
 
-const int SOL_ROLLER_1 = 4;
-const int SOL_ROLLER_2 = 5;
+const int SOL_ROLLER_1 = 2;
+const int SOL_ROLLER_2 = 3;
 const int SOL_SHIFT_1 = 0;
 const int SOL_SHIFT_2 = 1;
-const int SOL_H = 2;
-const int SOL_H1 = 3;
+const int SOL_H = 4;
+const int SOL_H1 = 5;
 const int LEFT_LIFT_LIMIT = 0;
 
 //IR sensors

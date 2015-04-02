@@ -6,7 +6,7 @@
 //0.478779 meters per revolution
 //20166 encoder units per meter
 //9451 encoder units per revolution
-
+///////////////////////////////////////////////////////////////////////////////////////
 DriveTrain::DriveTrain() :
 		Subsystem("DriveTrain") {
 	talonLeftMaster = new CANTalon(LEFT_MOTOR_MASTER);
@@ -61,26 +61,26 @@ DriveTrain::DriveTrain() :
 	cutPower = false;
 
 }
-
+///////////////////////////////////////////////////////////////////////////////////////
 float DriveTrain::GetAngle() {
 	return imu->GetYaw();
 }
-
+///////////////////////////////////////////////////////////////////////////////////////
 void DriveTrain::ResetGyro() {
 	imu->ZeroYaw();
 }
-
+///////////////////////////////////////////////////////////////////////////////////////
 float DriveTrain::GetPosition() {
 	return ((talonRightMaster->GetEncPosition()
 			- talonLeftMaster->GetEncPosition()) / 2);
 
 }
-
+///////////////////////////////////////////////////////////////////////////////////////
 void DriveTrain::ResetEncoders() {
 	talonRightMaster->SetPosition(0);
 	talonLeftMaster->SetPosition(0);
 }
-
+///////////////////////////////////////////////////////////////////////////////////////
 void DriveTrain::InitDefaultCommand() {
 	// Set the default command for a subsystem here.
 	SetDefaultCommand(new Drive());
@@ -89,6 +89,8 @@ void DriveTrain::InitDefaultCommand() {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
+
+///////////////////////////////////////////////////////////////////////////////////////
 void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 	SmartDashboard::PutNumber("Position", GetPosition());
 	if (cutPower == true) {
@@ -129,7 +131,7 @@ void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 	talonRightMaster->Set(rightValue);
 	talonRightFollowerA->Set(rightValue);
 }
-
+///////////////////////////////////////////////////////////////////////////////////////
 void DriveTrain::ChangeGear(bool _gear) {
 	if (currentGear != _gear) {
 		if (_gear) {
@@ -144,13 +146,13 @@ void DriveTrain::ChangeGear(bool _gear) {
 	}
 
 }
-
+///////////////////////////////////////////////////////////////////////////////////////
 void DriveTrain::_Strafe(float strafe_axis) {
 
 	talon_strafe->Set(strafe_axis);
 
 }
-
+///////////////////////////////////////////////////////////////////////////////////////
 void DriveTrain::HalfPower() {
 
 	if (cutPower == false) {
@@ -160,4 +162,4 @@ void DriveTrain::HalfPower() {
 	}
 	SmartDashboard::PutBoolean("Half Power", cutPower);
 }
-
+///////////////////////////////////////////////////////////////////////////////////////

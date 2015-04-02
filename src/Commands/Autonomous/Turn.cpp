@@ -17,11 +17,15 @@ Turn::Turn(float _angle, float _speed, bool _direction)
 	diff = 1000;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 // Called just before this Command runs the first time
 void Turn::Initialize()
 {
 	CommandBase::driveTrain->ResetGyro();
 }
+
+///////////////////////////////////////////////////////////////////////////////////////
 
 // Called repeatedly when this Command is scheduled to run
 void Turn::Execute()
@@ -39,6 +43,8 @@ void Turn::Execute()
 	SmartDashboard::PutNumber("DIFF",diff);
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 // Make this return true when this Command no longer needs to run execute()
 bool Turn::IsFinished()
 {
@@ -51,6 +57,8 @@ bool Turn::IsFinished()
 	return false;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 // Called once after isFinished returns true
 void Turn::End()
 {
@@ -59,9 +67,13 @@ void Turn::End()
 	angle = 0;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void Turn::Interrupted()
 {
 
 }
+
+///////////////////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,8 @@
 #include "Subsystems/Rollers.h"
 #include "../Commands/Rollers/Set_Roller.h"
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 Rollers::Rollers() :
 		Subsystem("Rollers") {
 	talonleft = new Talon(LEFT_ROLLER);
@@ -18,9 +20,13 @@ Rollers::Rollers() :
 	solenoid = new DoubleSolenoid(SOL_ROLLER_1,SOL_ROLLER_2 );
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 void Rollers::InitDefaultCommand() {
 	SetDefaultCommand(new Set_Roller());
 }
+
+///////////////////////////////////////////////////////////////////////////////////////
 
 void Rollers::ToggleMode(){
 	if (mode){
@@ -30,6 +36,8 @@ void Rollers::ToggleMode(){
 	}
 	SmartDashboard::PutBoolean("Rollers Double Power", mode);
 }
+
+///////////////////////////////////////////////////////////////////////////////////////
 
 void Rollers::Roll(float on_roller) {
 	SmartDashboard::PutBoolean("Rollers Double Power", mode);
@@ -43,6 +51,8 @@ void Rollers::Roll(float on_roller) {
 	}
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 void Rollers::Throw(bool right){
 	if (right){
 		//out
@@ -55,13 +65,20 @@ void Rollers::Throw(bool right){
 	}
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 //close
 void Rollers::TriggerSolenoid() {
 	solenoid->Set(solenoid->kForward);
 
 }
+
+///////////////////////////////////////////////////////////////////////////////////////
+
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 void Rollers::SolenoidOff() {
 	solenoid->Set(solenoid->kReverse);
 }
+
+///////////////////////////////////////////////////////////////////////////////////////

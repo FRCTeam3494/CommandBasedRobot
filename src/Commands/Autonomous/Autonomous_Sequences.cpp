@@ -95,6 +95,8 @@ GET IT OUT
 // a CommandGroup containing them would require both the chassis and the
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 //Low gear mode
 //Lift container
 //Clamp it with holder
@@ -118,11 +120,14 @@ void Autonomous_Sequences::auto1() {
 	AddSequential(new Container_Holder(false));
 	AddSequential(new Idiot_Lift(1.5, false));
 
-	//Turn
+	//Turn and move into autozone
 	 AddSequential(new Turn(90, 0.65, true));
 	AddSequential(new Autonomous_Move(2.85, .85));
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
+//Grab tote and container and line up to feeder station
 void Autonomous_Sequences::auto2() {
 	AddSequential(new Solenoid_Roller_Set(false));
 	AddSequential(new Autonomous_Roller(4));
@@ -130,14 +135,22 @@ void Autonomous_Sequences::auto2() {
 	AddSequential(new Solenoid_Roller_Set(true));
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 void Autonomous_Sequences::auto3() {
 	AddSequential(new Autonomous_Roller(4));
 }
+
+///////////////////////////////////////////////////////////////////////////////////////
 
 void Autonomous_Sequences::auto4() {
 	AddSequential(new Autonomous_Roller(5));
 }
 
+///////////////////////////////////////////////////////////////////////////////////////
+
 void Autonomous_Sequences::auto5() {
 
 }
+
+///////////////////////////////////////////////////////////////////////////////////////
