@@ -43,7 +43,7 @@ const int RIGHT_ROLLER = 0;
 
 const int COMPRESSOR = 0;
 
-const int CLIPSOL = 6;
+//const int CLIPSOL = 6;
 const int CLIPSOL_2 = 7;
 
 const int SOL_ROLLER_1 = 2;
@@ -62,6 +62,10 @@ const int RIGHT_IR = 0;
 const int SENSOR_UP = 0;
 const int SENSOR_DOWN = 1;
 
+//optical sensors
+const int Front_Sensor = 1;
+const int Rear_Sensor = 0;
+const int Top_Sensor = 2;
 //const int PUSHER_LEFT = 3;
 //const int PUSHER_RIGHT = 4;
 

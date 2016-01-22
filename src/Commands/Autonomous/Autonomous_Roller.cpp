@@ -1,12 +1,14 @@
 #include <Commands/Autonomous/Autonomous_Roller.h>
 
-Autonomous_Roller::Autonomous_Roller(int _mode)
+Autonomous_Roller::Autonomous_Roller(float _time2, int _mode)
 {
 	//1: OFF
 	//2: Suck in
 	//3: Throw out
 	//4: Throw both to the right (i.e. left is out, right talon in)
 	mode = _mode;
+	leime = _time2;
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -23,6 +25,8 @@ void Autonomous_Roller::Initialize()
 void Autonomous_Roller::Execute()
 {
 	oi->SetAuto(mode);
+	Wait(leime);
+	oi->SetAuto(1);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -38,6 +42,7 @@ bool Autonomous_Roller::IsFinished()
 // Called once after isFinished returns true
 void Autonomous_Roller::End()
 {
+	//mode = 1;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////

@@ -20,6 +20,9 @@
 #include "Commands/Clipperset.h"
 #include "Commands/Container_Holder.h"
 
+
+#include "Subsystems/Lift.h"
+
 //
 OI::OI() {
 	// Process operator interface input here.
@@ -43,14 +46,14 @@ OI::OI() {
 	buttonStart = new JoystickButton(controller, 8);
 	buttonSelect = new JoystickButton(controller, 7);
 
-	buttonA_2 = new JoystickButton(controller_2, 1);  //  xbox or whats
-	buttonB_2 = new JoystickButton(controller_2, 2);
-	buttonX_2 = new JoystickButton(controller_2, 3);
+	buttonA_2 = new JoystickButton(controller_2, 2);//2  //  xbox or whats
+	buttonB_2 = new JoystickButton(controller_2, 3);
+	buttonX_2 = new JoystickButton(controller_2, 1);
 	buttonY_2 = new JoystickButton(controller_2, 4);
 	buttonLB_2 = new JoystickButton(controller_2, 5);
 	buttonRB_2 = new JoystickButton(controller_2, 6);
 	buttonStart_2 = new JoystickButton(controller_2, 8);
-	buttonSelect_2 = new JoystickButton(controller_2, 9);
+	buttonSelect_2 = new JoystickButton(controller_2, 7);
 
 //open
 	buttonA->WhenPressed(new Solenoid_Roller_Set(false));
@@ -66,7 +69,10 @@ OI::OI() {
 
 	buttonStart->WhenPressed(new Double_Power_Rollers());
 	buttonSelect->WhenPressed(new Cut_Power());
-	buttonStart_2->WhenPressed(new ResetEncoders());
+	//buttonStart_2->WhenActive(new ResetEncoders());
+
+	buttonStart_2->WhileHeld(new ResetEncoders());
+	//buttonStart_2->WhenReleased(new )
 
 	buttonY_2->WhenPressed(new ChangeSpeed(true));
 	buttonA_2->WhenPressed(new ChangeSpeed(false));
@@ -76,6 +82,8 @@ OI::OI() {
 
 	buttonLB_2->WhenPressed(new Container_Holder(true));
 	buttonRB_2->WhenPressed(new Container_Holder(false));
+
+	//buttonStart_2->WhenPressed(new void isSensorTripped());
 }
 
 float OI::GetLeftJoystick() {

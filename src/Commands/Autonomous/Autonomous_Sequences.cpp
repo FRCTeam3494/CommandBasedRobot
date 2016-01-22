@@ -14,14 +14,22 @@
 Autonomous_Sequences::Autonomous_Sequences(int autoMode) {
 
 	SmartDashboard::init();
+	one = false;
+	two = false;
+	three = false;
+	four = false;
 	if (autoMode == 1){
 		auto1();
+		one = true;
 	} else if (autoMode == 2){
 		auto2();
+		two = true;
 	} else if (autoMode == 3){
 		auto3();
+		three = true;
 	} else if(autoMode == 4){
 		auto4();
+		four = true;
 	} else if (autoMode == 5){
 		auto5();
 	}
@@ -107,47 +115,96 @@ GET IT OUT
 //Move forward
 
 void Autonomous_Sequences::auto1() {
-	AddSequential(new Autonomous_Roller(1));
-	AddSequential(new Container_Holder(true));
-	AddSequential(new ShiftGear(false));
-	AddSequential(new Idiot_Lift(1.5, true));
-	AddSequential(new Solenoid_Roller_Set(true));
-	AddSequential(new Autonomous_Move(0.76, 0.75));
-	AddSequential(new Clipperset(false));
-	AddSequential(new Bottom_Lift());
-	AddSequential(new Idiot_Lift(0.25, false));
-	AddSequential(new Idiot_Lift(4, true));
+	AddSequential(new Autonomous_Roller(1, 1));
 	AddSequential(new Container_Holder(false));
-	AddSequential(new Idiot_Lift(1.5, false));
+	AddSequential(new ShiftGear(false));
+	AddSequential(new Idiot_Lift(2.3, true));
+	AddSequential(new Solenoid_Roller_Set(true));
+	AddSequential(new Autonomous_Move(0.40, 0.75));
+	AddSequential(new Clipperset(true));
+	//AddSequential(new Bottom_Lift());
+	//AddSequential(new Idiot_Lift(0.25, false));
+	//AddSequential(new Idiot_Lift(1.25, true));
+	//AddSequential(new Container_Holder(true));
+	//AddSequential(new Idiot_Lift(1.5, false));
 
 	//Turn and move into autozone
-	 AddSequential(new Turn(90, 0.65, true));
-	AddSequential(new Autonomous_Move(2.85, .85));
+	 AddSequential(new Turn(81, 0.65, true));
+	AddSequential(new Autonomous_Move(1.2, .80));
+
+SmartDashboard::PutBoolean("Auto1 State",one);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
 //Grab tote and container and line up to feeder station
 void Autonomous_Sequences::auto2() {
-	AddSequential(new Solenoid_Roller_Set(false));
+/*	AddSequential(new Solenoid_Roller_Set(false));
 	AddSequential(new Autonomous_Roller(4));
 	AddSequential(new Autonomous_Move(0.95, 0.55));
 	AddSequential(new Solenoid_Roller_Set(true));
+	*/
+
+AddSequential(new Autonomous_Roller(1, 1));
+		AddSequential(new Container_Holder(false));
+		AddSequential(new ShiftGear(false));
+		AddSequential(new Idiot_Lift(2.3, true));
+		AddSequential(new Solenoid_Roller_Set(true));
+		AddSequential(new Autonomous_Move(0.40, 0.75));
+		AddSequential(new Clipperset(true));
+		//AddSequential(new Bottom_Lift());
+		//AddSequential(new Idiot_Lift(0.25, false));
+		//AddSequential(new Idiot_Lift(1.25, true));
+		//AddSequential(new Container_Holder(true));
+		//AddSequential(new Idiot_Lift(1.5, false));
+
+		//Turn and move into autozone
+		 AddSequential(new Turn(81, 0.65, true));
+		AddSequential(new Autonomous_Move(1.4, 1.0));
+
+		//SmartDashboard::PutBoolean("Auto2 State",two);
+
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
 void Autonomous_Sequences::auto3() {
-	AddSequential(new Autonomous_Roller(4));
+	//AddSequential(new Autonomous_Roller(4));
+	AddSequential(new Solenoid_Roller_Set(false));
+	//AddSequential(new Idiot_Lift(2.3, true));
+	AddSequential(new Autonomous_Roller(2, 2));
+	AddSequential(new Autonomous_Move(-1.2, 0.75));
+	AddSequential(new Turn(44, 0.65, true));
+	SmartDashboard::PutBoolean("Auto3 State",three);
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
 void Autonomous_Sequences::auto4() {
-	AddSequential(new Autonomous_Roller(5));
+	//AddSequential(new Autonomous_Roller(5));
+	//SmartDashboard::PutBoolean("Auto4 State",four);
+	/* AddSequential(new Container_Holder(false));
+			AddSequential(new ShiftGear(false));
+			AddSequential(new Idiot_Lift(2.3, true));
+			AddSequential(new Solenoid_Roller_Set(true));
+			AddSequential(new Autonomous_Move(0.36, 0.75));
+			AddSequential(new Clipperset(true));
+			//AddSequential(new Bottom_Lift());
+			//AddSequential(new Idiot_Lift(0.25, false));
+			//AddSequential(new Idiot_Lift(1.25, true));
+			//AddSequential(new Container_Holder(true));
+			//AddSequential(new Idiot_Lift(1.5, false));
+
+			//Turn and move into autozone
+			 AddSequential(new Turn(81, 0.65, true));
+			AddSequential(new Autonomous_Move(1.4, 1.0));
+*/
+			//SmartDashboard::PutBoolean("Auto2 State",two);
 }
 
-///////////////////////////////////////////////////////////////////////////////////////
+///////////////////S////////////////////////////////////////////////////////////////////
 
 void Autonomous_Sequences::auto5() {
 

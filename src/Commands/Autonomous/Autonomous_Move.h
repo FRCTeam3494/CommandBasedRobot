@@ -19,6 +19,7 @@ private:
 	float distance;
 	float speed;
 	float target;
+	bool back;
 };
 
 #endif

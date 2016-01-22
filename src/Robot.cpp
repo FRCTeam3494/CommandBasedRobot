@@ -7,12 +7,14 @@
 #include "Commands/Rollers/Set_Roller.h"
 #include "Commands/Autonomous/Idiot_Lift.h"
 #include "Commands/Autonomous/Autonomous_Move.h"
+#include "Commands/Autonomous/Autonomous_Sequences2.h"
 
 class Robot: public IterativeRobot {
 private:
 	LiveWindow *lw;
 	Command * autonomousSequence;
 	SendableChooser *chooser;
+
 
 	void RobotInit() {
 		CommandBase::init();
@@ -24,6 +26,7 @@ private:
 		chooser->AddObject("Auto 3",new Autonomous_Sequences(3));
 		chooser->AddObject("Auto 4",new Autonomous_Sequences(4));
 		chooser->AddObject("Auto 5", new Autonomous_Sequences(5));
+
 
 		SmartDashboard::PutData("Auto Modes",chooser);
 

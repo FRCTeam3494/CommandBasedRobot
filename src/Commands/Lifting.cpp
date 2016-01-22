@@ -26,7 +26,7 @@ void Lifting::Execute()
 
 	if(oi->GetRightTrigger_2() > .25)
 	{
-		magnitude_lift = oi->GetRightTrigger_2();
+		magnitude_lift = oi->GetRightTrigger_2()+ 0.02;
 	}
 	else if (oi->GetLeftTrigger_2() > .25)
 	{

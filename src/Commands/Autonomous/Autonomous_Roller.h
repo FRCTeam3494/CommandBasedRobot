@@ -7,13 +7,14 @@
 class Autonomous_Roller: public CommandBase
 {
 public:
-	Autonomous_Roller(int _mode);
+	Autonomous_Roller(float _time2,int _mode);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
 	void End();
 	void Interrupted();
 	int mode;
+	float leime;
 };
 
 #endif

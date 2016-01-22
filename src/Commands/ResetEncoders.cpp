@@ -1,6 +1,6 @@
 #include "ResetEncoders.h"
 #include "Subsystems/DriveTrain.h"
-
+#include "Subsystems/Lift.h"
 ResetEncoders::ResetEncoders()
 {
 	// Use Requires() here to declare subsystem dependencies
@@ -12,7 +12,7 @@ ResetEncoders::ResetEncoders()
 // Called just before this Command runs the first time
 void ResetEncoders::Initialize()
 {
-
+//CommandBase::lift->setLocation();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -20,8 +20,11 @@ void ResetEncoders::Initialize()
 // Called repeatedly when this Command is scheduled to run
 void ResetEncoders::Execute()
 {
-	CommandBase::driveTrain->ResetEncoders();
-	CommandBase::driveTrain->ResetGyro();
+	//CommandBase::driveTrain->ResetEncoders();
+	//CommandBase::driveTrain->ResetGyro();
+
+	CommandBase::lift->isSensorTripped();
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
