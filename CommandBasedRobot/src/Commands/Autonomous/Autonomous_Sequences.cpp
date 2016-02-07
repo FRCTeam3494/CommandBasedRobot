@@ -183,6 +183,10 @@ void Autonomous_Sequences::auto3() {
 ///////////////////////////////////////////////////////////////////////////////////////
 
 void Autonomous_Sequences::auto4() {
+
+
+	AddSequential(new Autonomous_Move(24, .60));
+
 	//AddSequential(new Autonomous_Roller(5));
 	//SmartDashboard::PutBoolean("Auto4 State",four);
 	/* AddSequential(new Container_Holder(false));

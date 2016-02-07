@@ -1,5 +1,6 @@
 #include "Autonomous_Move.h"
 #include "Subsystems/DriveTrain.h"
+
 ///////////////////////////////////////////////////////////////////////////////////////
 Autonomous_Move::Autonomous_Move(float _distance, float _speed) {
 	// Use Requires() here to declare subsystem dependencies
@@ -8,37 +9,69 @@ Autonomous_Move::Autonomous_Move(float _distance, float _speed) {
 	distance = _distance;
 	speed = _speed;
 	CommandBase::driveTrain->ResetEncoders();
-	target = (distance * 21000);
+	target = (distance); // Dinstance is in inches
 	back = false;
+	SmartDashboard::init();
+	output = 0;
+
+
+	//DriveTrain::talonRightMaster->SetPID(5, 0.5, 1);
+
+	//DriveTrain::talonRightMaster->SetSetpoint(target);
+
+	//DriveTrain::talonRightMaster->Enable();
+
+
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
 // Called just before this Command runs the first time
 
+
+
 ///////////////////////////////////////////////////////////////////////////////////////
 
 void Autonomous_Move::Initialize() {
 	CommandBase::driveTrain->ResetEncoders();
+	CommandBase::driveTrain->PID_Enable(target);
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
 
 // Called repeatedly when this Command is scheduled to run
 void Autonomous_Move::Execute() {
-//	CommandBase::driveTrain->TankDrive(-speed, speed);
-	if (target < 0 )
+//
+
+
+output = CommandBase::driveTrain->PID_Update(target);
+SmartDashboard::PutNumber("PID_Data", output);
+
+
+	//std::cout << system << std::endl;
+
+	//SmartDashboard::PutNumber("PID_DAta", CommandBase::driveTrain->PID_Update());
+
+	/*if (output <= 0 )
 	{
-		CommandBase::driveTrain->TankDrive(speed, -speed);
-		back = true;
+		CommandBase::driveTrain->TankDrive(output, -output);
+
 
 	}
-	else if (target > 0)
+	else if (output > 0)
 	{
 
-		CommandBase::driveTrain->TankDrive(-speed, speed);
-		back = false;
-	}
+		CommandBase::driveTrain->TankDrive(-output, output);
+
+	}*/
+CommandBase::driveTrain->TankDrive(-output, output);
+
+
+
+
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -47,6 +80,8 @@ void Autonomous_Move::Execute() {
 ///////////////////////////////////////////////////////////////////////////////////////
 bool Autonomous_Move::IsFinished() {
 
+
+/*
 	if (CommandBase::driveTrain->GetPosition() >= target && back == false) {
 		CommandBase::driveTrain->TankDrive(0, 0);
 		CommandBase::driveTrain->ResetEncoders();
@@ -57,7 +92,7 @@ bool Autonomous_Move::IsFinished() {
 		CommandBase::driveTrain->ResetEncoders();
 		return true;
 	}
-
+*/
 	return false;
 }
 

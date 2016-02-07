@@ -20,13 +20,13 @@ private:
 		CommandBase::init();
 		SmartDashboard::init();
 		lw = LiveWindow::GetInstance();
+
 		chooser = new SendableChooser();
 		chooser->AddDefault("Auto 1",new Autonomous_Sequences(1));
 		chooser->AddObject("Auto 2", new Autonomous_Sequences(2));
 		chooser->AddObject("Auto 3",new Autonomous_Sequences(3));
 		chooser->AddObject("Auto 4",new Autonomous_Sequences(4));
 		chooser->AddObject("Auto 5", new Autonomous_Sequences(5));
-
 
 		SmartDashboard::PutData("Auto Modes",chooser);
 

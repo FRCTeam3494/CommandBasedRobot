@@ -3,6 +3,9 @@
 #include "../Commands/Drive/Drive.h"
 #include <math.h>
 
+
+
+
 //0.478779 meters per revolution
 //20166 encoder units per meter
 //9451 encoder units per revolution
@@ -47,8 +50,10 @@ DriveTrain::DriveTrain() :
 	talonLeftMaster->SetFeedbackDevice(CANTalon::QuadEncoder);
 
 	Rpulse = ((3.14 * (WHEEL_DIAMETER/GEAR_RATIO))/PULSE_PER_REVOLUTION);
+	////////////////////////
 
 
+	////////////////////////
 	//talonRightMaster->ConfigEncoderCodesPerRev(Rpulse);
 
 	Lpulse = ((3.14 * (WHEEL_DIAMETER/GEAR_RATIO))/PULSE_PER_REVOLUTION);
@@ -82,7 +87,53 @@ DriveTrain::DriveTrain() :
 
 	cutPower = false;
 
+
 }
+
+void DriveTrain::PID_Enable(float target)
+{
+
+	talonRightMaster->SetSetpoint(target);
+	talonRightMaster->SetPID(.05,.005,.02);
+	talonRightMaster->Enable();
+
+}
+
+
+
+float DriveTrain::PID_Update(float target)
+{
+//	return talonRightMaster->Get();
+
+	error = target - GetPosition(); // start off with error being the target
+	integral_error += error;
+	delta_error = prev_error-error;
+
+	if (integral_error > 100)
+		integral_error = 100;
+	if (integral_error < -100)
+		integral_error = -100;
+
+	p_out = error * talonRightMaster->GetP();
+	i_out = integral_error * talonRightMaster->GetI();
+	d_out = delta_error * talonRightMaster->GetD();
+
+	output = p_out + i_out + d_out;
+	if (output > 1)
+		output = 1;
+	if (output < -1)
+		output = -1;
+	prev_error = error;
+
+	//talonRightMaster->Set(output);
+	//talonLeftMaster->Set(-output);
+	//CommandBase::driveTrain->TankDrive(-output, output);
+	//SmartDashboard::PutNumber("PID", talonRightMaster->Get());
+	return output;
+}
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////
 //float DriveTrain::GetAngle() {
 	//return imu->GetYaw();
@@ -94,14 +145,15 @@ DriveTrain::DriveTrain() :
 ///////////////////////////////////////////////////////////////////////////////////////
 
 float DriveTrain::GetPosition() {
-	return (talonRightMaster->GetEncPosition()* Rpulse);
-
+	//return ((talonRightMaster->GetEncPosition()* Rpulse) + (talonLeftMaster->GetEncPosition()* Lpulse) / 2);
+	return (talonRightMaster->GetEncPosition() * Rpulse); // testing for PID output
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
 void DriveTrain::ResetEncoders() {
 	talonRightMaster->SetPosition(0);
 	talonLeftMaster->SetPosition(0);
+
 }
 ///////////////////////////////////////////////////////////////////////////////////////
 void DriveTrain::InitDefaultCommand() {
@@ -116,8 +168,7 @@ void DriveTrain::InitDefaultCommand() {
 ///////////////////////////////////////////////////////////////////////////////////////
 void DriveTrain::TankDrive(float leftAxis, float rightAxis) {
 	SmartDashboard::PutNumber("Position", GetPosition());
-
-
+	//SmartDashboard::PutNumber("OutPut", talonRightMaster->Get()); // output going to talon is -1 to 1 // 0 is the midpoint
 
 
 	if (cutPower == true) {

@@ -21,11 +21,7 @@ class DriveTrain: public Subsystem {
 private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
-	CANTalon* talonLeftMaster;
-	CANTalon* talonLeftFollowerA;
-	CANTalon* talon_strafe;
-	CANTalon* talonRightMaster;
-	CANTalon* talonRightFollowerA;
+
 	float Rpulse;
 	float Lpulse;
 	double position;
@@ -33,6 +29,27 @@ private:
 	double velocityRight;
 	double velocityLeft;
 	bool cutPower;
+
+	///////////////////////////////////////
+	signed int error;
+			 float p_out;
+			 float delta_error;
+			 float i_out;
+			 float d_out;
+			 float output;
+
+			float integral_error;
+			float prev_error;
+
+
+
+/////////////////////////////////////////////////////////
+	CANTalon* talonLeftMaster;
+	CANTalon* talonLeftFollowerA;
+	CANTalon* talon_strafe;
+	CANTalon* talonRightMaster;
+	CANTalon* talonRightFollowerA;
+
 /*
 	NetworkTable *table;
 #if defined(ENABLE_AHRS)
@@ -58,6 +75,11 @@ public:
 	void BrakeTalons();
 	void HalfPower();
 	void _Strafe(float strafe_axis);
+	void PID_Enable(float target);
+	float PID_Update(float target);
+
+
+
 
 	bool currentGear;
 
